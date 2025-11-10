@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Calculadora de Huella de Carbono | EcoAcción</title>
+    
+    <script src="https://kit.fontawesome.com/bad7f7f5d4.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style_huella.css"> 
+    <style>
+        /* AÑADE AQUÍ EL CSS PROPORCIONADO EN LA SECCIÓN 2 */
+        /* ===================================== */
+        /* 8. ESTILOS DEL BOTÓN FLOTANTE */
+        /* ===================================== */
+        .btn-floating-back {
+            position: fixed; 
+            bottom: 30px; 
+            left: 30px; 
+            z-index: 900; 
+            width: 50px;
+            height: 50px;
+            border-radius: 50%; 
+            background-color: var(--color-naranja-base);
+            color: var(--color-texto-claro);
+            border: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            transition: background-color 0.3s, transform 0.3s, opacity 0.3s;
+        }
+
+        .btn-floating-back:hover {
+            background-color: var(--color-naranja-oscuro);
+            transform: scale(1.05);
+        }
+
+        .btn-floating-back:active {
+            transform: scale(0.95);
+        }
+
+        /* Ocultar en dispositivos móviles para evitar conflictos con otros elementos */
+        @media screen and (max-width: 425px) {
+            .btn-floating-back {
+                bottom: 15px;
+                left: 15px;
+                width: 45px;
+                height: 45px;
+                font-size: 1.3em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="header-container">
+        <nav class="navbar-eco">
+            <div class="logo-container">
+                <img src="logo_pw.png" alt="Logo EcoAcción">
+            </div>
+
+            <div class="brand-name">
+                <h1>Eco<span>Acción</span></h1>
+                <p>¡Tu Impacto Comienza Aquí!</p>
+            </div>
+        </nav>
+        <img src="arbol_enc.gif" alt="Árbol animado" class="header-gif">
+        
+        </div>
+        
+    <div class="sidebar-menu" id="sidebarMenu">
+        <div class="sidebar-menu-content">
+            <ul class="dropdown-list">
+                <li class="animated-item"><a href="#"><i class="fas fa-home"></i> Inicio</a></li>
+                <li class="animated-item"><a href="#"><i class="fas fa-globe-americas"></i> Sobre el cambio climático</a></li>
+                <li class="animated-item"><a href="#"><i class="fas fa-leaf"></i> Acciones para el clima</a></li>
+                <li class="animated-item"><a href="#"><i class="fas fa-project-diagram"></i> Proyectos y campañas</a></li>
+                <li class="animated-item"><a href="#"><i class="fas fa-users"></i> Participa</a></li>
+                <li class="animated-item"><a href="#"><i class="fas fa-book-open"></i> Recursos</a></li>
+                <li class="animated-item"><a href="#"><i class="fas fa-handshake"></i> Sobre nosotros</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <main class="main-content">
+        <section class="calculator-container" id="calculatorContainer">
+            <h2 class="title-calculator"><i class="fas fa-cloud"></i> Calcula tu **Huella de Carbono**</h2>
+            <p class="subtitle-calculator">Responde las siguientes preguntas para descubrir tu impacto anual en CO2e (Toneladas de dióxido de carbono equivalente).</p>
+
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progressBar" style="width: 0%;"></div>
+            </div>
+            <p class="progress-text"><span id="currentStep">1</span> de <span id="totalSteps">5</span></p>
+
+            <form id="carbonForm" class="carbon-form">
+
+                <div class="step-content visible" data-step="1">
+                    <h3>Paso 1: Energía Doméstica <i class="fas fa-bolt"></i></h3>
+                    <p>¿Cuánta energía consumes al mes en promedio?</p>
+                    <div class="input-group">
+                        <label for="electric-bill">Consumo Eléctrico (kWh/mes):</label>
+                        <input type="number" id="electric-bill" name="electric-bill" value="300" min="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="gas-usage">Consumo de Gas Natural (m³/mes):</label>
+                        <input type="number" id="gas-usage" name="gas-usage" value="20" min="0">
+                    </div>
+                    <div class="input-group">
+                        <label for="num-people">Número de Personas en el Hogar:</label>
+                        <input type="number" id="num-people" name="num-people" value="2" min="1" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn-next" onclick="nextStep(1)">Siguiente <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="step-content" data-step="2">
+                    <h3>Paso 2: Transporte Diario <i class="fas fa-car"></i></h3>
+                    <p>¿Qué tipo de vehículo utilizas y con qué frecuencia?</p>
+                    <div class="input-group">
+                        <label for="car-type">Tipo de Combustible de tu coche principal:</label>
+                        <select id="car-type" name="car-type" required>
+                            <option value="none">No tengo coche</option>
+                            <option value="gasoline" selected>Gasolina</option>
+                            <option value="diesel">Diésel</option>
+                            <option value="electric">Eléctrico</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="car-mileage">Kilómetros recorridos por semana (en coche):</label>
+                        <input type="number" id="car-mileage" name="car-mileage" value="100" min="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="bus-train-days">Días que usas transporte público (autobús/tren) a la semana:</label>
+                        <input type="number" id="bus-train-days" name="bus-train-days" value="3" min="0" max="7" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn-prev" onclick="prevStep(2)"><i class="fas fa-arrow-left"></i> Anterior</button>
+                        <button type="button" class="btn-next" onclick="nextStep(2)">Siguiente <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="step-content" data-step="3">
+                    <h3>Paso 3: Viajes en Avión <i class="fas fa-plane"></i></h3>
+                    <p>Calcularemos tu impacto anual por vuelos.</p>
+                    <div class="input-group">
+                        <label for="short-flights">Vuelos nacionales/cortos (ida y vuelta) al año (ej: < 1500km):</label>
+                        <input type="number" id="short-flights" name="short-flights" value="1" min="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="long-flights">Vuelos internacionales/largos (ida y vuelta) al año (ej: > 3500km):</label>
+                        <input type="number" id="long-flights" name="long-flights" value="0" min="0" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn-prev" onclick="prevStep(3)"><i class="fas fa-arrow-left"></i> Anterior</button>
+                        <button type="button" class="btn-next" onclick="nextStep(3)">Siguiente <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="step-content" data-step="4">
+                    <h3>Paso 4: Dieta y Consumo <i class="fas fa-shopping-basket"></i></h3>
+                    <p>Tu dieta tiene un gran impacto. ¿Cómo describirías tus hábitos?</p>
+                    <div class="input-group">
+                        <label for="diet-type">Tipo de Dieta:</label>
+                        <select id="diet-type" name="diet-type" required>
+                            <option value="high-meat" selected>Alto consumo de carne (casi todas las comidas)</option>
+                            <option value="avg-meat">Consumo promedio de carne (algunas veces a la semana)</option>
+                            <option value="vegetarian">Vegetariana (sin carne)</option>
+                            <option value="vegan">Vegana (sin productos animales)</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="recycling-level">Nivel de Reciclaje:</label>
+                        <select id="recycling-level" name="recycling-level" required>
+                            <option value="low">Raramente reciclo</option>
+                            <option value="average" selected>Reciclo papel y plástico</option>
+                            <option value="high">Reciclo todo (vidrio, metal, etc.)</option>
+                        </select>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn-prev" onclick="prevStep(4)"><i class="fas fa-arrow-left"></i> Anterior</button>
+                        <button type="button" class="btn-next" onclick="nextStep(4)">Siguiente <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+
+                <div class="step-content" data-step="5">
+                    <h3>Paso 5: Otros Consumos y Residuos <i class="fas fa-recycle"></i></h3>
+                    <p>Últimas preguntas para afinar el resultado.</p>
+                    <div class="input-group">
+                        <label for="clothes-purchases">Veces que compras ropa nueva al año:</label>
+                        <input type="number" id="clothes-purchases" name="clothes-purchases" value="4" min="0" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="waste-production">Producción de Residuos (Bolsas de basura a la semana):</label>
+                        <input type="number" id="waste-production" name="waste-production" value="2" min="0" required>
+                    </div>
+                    <div class="button-group">
+                        <button type="button" class="btn-prev" onclick="prevStep(5)"><i class="fas fa-arrow-left"></i> Anterior</button>
+                        <button type="submit" class="btn-calculate" id="calculateBtn">CALCULAR HUELLA <i class="fas fa-leaf"></i></button>
+                    </div>
+                </div>
+            </form>
+        </section>
+
+        <section class="results-container hidden" id="resultsContainer">
+            <h2 class="title-results"><i class="fas fa-chart-line"></i> Tu Huella de Carbono Anual</h2>
+            <div class="result-box">
+                <p class="result-label">Total de CO2e</p>
+                <div class="result-value-wrapper">
+                    <span class="result-value" id="finalCarbonFootprint">0.00</span>
+                    <span class="result-unit">Toneladas de CO2e</span>
+                </div>
+                <p class="global-avg" id="globalAverageComparison"></p>
+            </div>
+
+            <div class="impact-breakdown">
+                <h3 class="breakdown-title"><i class="fas fa-percent"></i> Desglose de tu Impacto</h3>
+                <div class="breakdown-charts">
+                    <div class="chart-item">
+                        <span class="chart-label"><i class="fas fa-bolt"></i> Hogar:</span>
+                        <span id="resultHogar" class="chart-value">0.00 t</span>
+                    </div>
+                    <div class="chart-item">
+                        <span class="chart-label"><i class="fas fa-car"></i> Transporte:</span>
+                        <span id="resultTransporte" class="chart-value">0.00 t</span>
+                    </div>
+                    <div class="chart-item">
+                        <span class="chart-label"><i class="fas fa-plane"></i> Viajes Aéreos:</span>
+                        <span id="resultAereo" class="chart-value">0.00 t</span>
+                    </div>
+                    <div class="chart-item">
+                        <span class="chart-label"><i class="fas fa-shopping-basket"></i> Consumo/Dieta:</span>
+                        <span id="resultConsumo" class="chart-value">0.00 t</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="suggestions-area">
+                <h3 class="suggestions-title"><i class="fas fa-lightbulb"></i> Recomendaciones Personalizadas</h3>
+                <ul class="suggestions-list" id="suggestionsList">
+                    </ul>
+            </div>
+
+            <div class="button-group results-actions">
+                <button type="button" class="btn-print" onclick="window.print()"><i class="fas fa-print"></i> Imprimir Resultado</button>
+                <button type="button" class="btn-reset" onclick="location.reload()"><i class="fas fa-redo"></i> Recalcular</button>
+            </div>
+        </section>
+    </main>
+    
+    <button class="btn-floating-back" onclick="window.history.back()">
+        <i class="fas fa-arrow-left">
+            <a href="particioa.html" class="btn-flotante-regreso"></a>
+        </i>
+    </button>
+    
+    <script src="script_huella.js"></script>
+    <script>
+        /* AÑADE AQUÍ EL JAVASCRIPT PROPORCIONADO EN LA SECCIÓN 3 */
+    </script>
+</body>
+</html>

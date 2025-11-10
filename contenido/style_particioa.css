@@ -1,0 +1,372 @@
+/* =================================== */
+/* 1. VARIABLES GLOBALES Y RESET UNIFICADOS */
+/* =================================== */
+:root {
+    /* Variables del Slider Original */
+    --gap: 1.25rem;
+    --speed: 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --closed: 5rem;
+    --open: 26rem; 
+    --accent: #ff6b35; 
+    --overlay-dark: rgba(0, 0, 0, 0.6); 
+    --desc-bg: rgba(200, 200, 200, 0.8); 
+    
+    /* Variables del Header/Menú AÑADIDAS */
+    --color-naranja-base: #FF8C00; 
+    --color-naranja-oscuro: #E67E22;
+    --color-texto-claro: #FFFFFF;
+    --color-verde-marca: #3ABF9E;
+    --color-azul-header: #2A9D8F; 
+    --color-amarillo-cta: #FFF000;
+    
+    color-scheme: light;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, sans-serif; 
+}
+body {
+    font-family: Inter, sans-serif;
+    background: #ffffff; 
+    color: #000000; 
+    overflow-x: hidden; 
+    
+    /* Compensar la altura del header fijo */
+    padding-top: 90px; 
+}
+
+
+/* =================================== */
+/* 2. ESTILOS DEL HEADER Y MENÚ */
+/* =================================== */
+
+/* --- ÍCONO DE MENÚ (HAMBURGUESA) --- */
+.menu-icon {
+    cursor: pointer; padding: 10px; position: fixed; top: 20px; left: 20px; 
+    z-index: 1000; 
+}
+.menu-icon .bar {
+    width: 30px; height: 4px; background-color: var(--color-texto-claro); margin: 6px 0;
+    display: block; border-radius: 2px; transition: all 0.3s ease;
+}
+.menu-icon.active .bar:nth-child(2) { opacity: 0; }
+.menu-icon.active .bar:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.menu-icon.active .bar:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+/* --- HEADER CONTAINER (Fijo) --- */
+.header-container {
+    background: rgba(42, 157, 143, 0.8);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 0; 
+    width: 100%; 
+    height: 90px; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    z-index: 900; 
+    overflow: hidden;
+}
+.navbar-eco {
+    display: flex; align-items: center; justify-content: flex-start; margin: 0;
+    width: 100%; padding: 15px 30px; padding-left: 90px; 
+    height: 100%;
+    position: relative; z-index: 10;
+}
+.logo-container img { height: 60px; margin-right: 10px; }
+.brand-name {
+    display: flex; flex-direction: column; justify-content: center; line-height: 1.1; 
+    color: var(--color-texto-claro);
+}
+.brand-name h1 {
+    font-size: 2.5em; font-weight: 800; font-family: 'Poppins', sans-serif;
+    margin: 0; line-height: 1;
+}
+.brand-name h1 span { color: var(--color-amarillo-cta); }
+.brand-name p {
+    font-size: 0.9em; font-weight: 600; margin: 0; color: var(--color-texto-claro);
+    font-family: 'Poppins', sans-serif; margin-top: 5px; 
+}
+
+/* --- GIF y Raíces (Animaciones visuales - Versión Escritorio) --- */
+.header-gif {
+    position: absolute; top: 0px; right: 10px; height: 90px; width: auto;
+    z-index: 102; pointer-events: none; transform: scale(1);
+    transform-origin: right center; transition: transform 0.3s ease;
+}
+.animated-roots-wrapper {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 5; pointer-events: none; perspective: 1000px;
+    transform: scale(1); transform-origin: left center; transition: transform 0.3s ease;
+}
+.root {
+    position: absolute; background-color: rgba(100, 70, 40, 0.6); border-radius: 50%;
+    height: 4px; transform-origin: left center; opacity: 0;
+    animation: growRoot 15s ease-in-out infinite forwards;
+}
+@keyframes growRoot {
+    0% { transform: scaleX(0); opacity: 0; } 10% { opacity: 1; }
+    80% { transform: scaleX(1); opacity: 0.8; } 100% { transform: scaleX(1); opacity: 0; }
+}
+.root-1 { top: 20%; left: 0; width: 150px; transform: rotate(10deg) scaleX(0); animation-delay: 0s; }
+.root-8 { top: 70%; right: 0; width: 160px; transform-origin: right center; transform: rotate(15deg) scaleX(0); animation-delay: 7s; background-color: rgba(110, 80, 50, 0.6); }
+
+
+/* --- ESTILOS DEL MENÚ LATERAL (Sidebar) --- */
+.sidebar-menu {
+    position: fixed; top: 0; left: 0; height: 100vh; width: 300px;
+    background-color: var(--color-naranja-base); 
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3); z-index: 999; 
+    overflow-y: auto; 
+    transform: translateX(-100%); 
+    transition: transform 0.4s ease-out; 
+}
+.sidebar-menu.visible { transform: translateX(0); }
+.sidebar-menu-content { padding-top: 100px; } 
+
+.dropdown-list { list-style: none; padding: 0; margin: 0; }
+.dropdown-list li a {
+    display: flex; 
+    align-items: center; 
+    padding: 15px 30px; 
+    text-decoration: none;
+    color: var(--color-texto-claro); 
+    font-size: 1.1em; font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); 
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+.dropdown-list li a:hover { background-color: var(--color-naranja-oscuro); }
+
+.dropdown-list li a i { 
+    /* AJUSTE PARA SEPARAR EL ICONO DEL TEXTO */
+    margin-right: 20px; 
+    font-size: 1.2em; 
+}
+
+/* Animación escalonada */
+.animated-item {
+    transform: translateX(-20px); opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+.sidebar-menu.visible .animated-item { 
+    transform: translateX(0); 
+    opacity: 1;
+}
+/* Retrasos para el efecto escalonado (cascada) */
+.sidebar-menu.visible .animated-item:nth-child(1) { transition-delay: 0.1s; }
+.sidebar-menu.visible .animated-item:nth-child(2) { transition-delay: 0.2s; }
+.sidebar-menu.visible .animated-item:nth-child(3) { transition-delay: 0.3s; }
+.sidebar-menu.visible .animated-item:nth-child(4) { transition-delay: 0.4s; }
+.sidebar-menu.visible .animated-item:nth-child(5) { transition-delay: 0.5s; }
+.sidebar-menu.visible .animated-item:nth-child(6) { transition-delay: 0.6s; }
+
+
+/* =================================== */
+/* 3. ESTILOS DEL SLIDER VERTICAL (ACORDEÓN) - ESCRITORIO */
+/* =================================== */
+
+.slider-section { margin-top: 0; }
+.head {
+    max-width: 1400px; margin: auto; padding: 70px 20px 40px; 
+    display: flex; justify-content: flex-start; align-items: flex-end; gap: 2rem;
+}
+.head h2 { font: 400 1.5rem/1.2 Inter, sans-serif; color: #000000; }
+
+.slider { 
+    max-width: 800px; margin: auto; padding: 0 20px; overflow: visible; 
+}
+
+.track {
+    display: flex; flex-direction: column; gap: var(--gap);
+    align-items: center; justify-content: flex-start;
+    padding-bottom: 40px; height: auto;
+}
+
+/* --- LÓGICA DE TARJETA (CERRADA) --- */
+.project-card {
+    position: relative; flex: 0 0 auto; width: 100%; height: var(--closed); 
+    border-radius: 1rem; overflow: hidden; cursor: pointer;
+    transition: height var(--speed), transform var(--speed); 
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+    z-index: 1; 
+    transform: translateZ(0);
+}
+
+.project-card__bg {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; filter: brightness(0.6) saturate(75%); 
+    transition: filter 0.3s, transform var(--speed);
+}
+.project-card:hover .project-card__bg { filter: brightness(0.9) saturate(100%); transform: scale(1.03); }
+
+.project-card__content {
+    position: absolute; inset: 0; display: flex; flex-direction: column; 
+    justify-content: center; align-items: flex-start; padding-left: 1.5rem; 
+    z-index: 2; transition: all var(--speed);
+    background: linear-gradient(to right, var(--overlay-dark) 0%, rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+}
+
+.project-card__title {
+    color: #ffffff; font-weight: 700; font-size: 1.4rem; writing-mode: horizontal-tb; 
+    transform: none; position: static; white-space: nowrap; transition: all var(--speed);
+    display: block; padding: 0; border-radius: 0; background-color: transparent; 
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 1); 
+}
+
+/* OCULTAR ELEMENTOS POR DEFECTO */
+.project-card__desc,
+.project-card__btn {
+   display: none !important; 
+}
+
+/* 🔄 LÓGICA DE HOVER (ABIERTA) - ESCRITORIO --- */
+.project-card:hover {
+    height: var(--open); 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+    z-index: 99; 
+    transform: scale(1.01) translateZ(0); 
+}
+
+.project-card:hover .project-card__content {
+    flex-direction: column; justify-content: flex-start; align-items: flex-start;
+    padding: 1.5rem; gap: 1.1rem;
+    background: linear-gradient(transparent 30%, rgba(255, 255, 255, 0.95) 100%); 
+}
+
+.project-card:hover .project-card__title {
+    position: static; font-size: 2.2rem; color: #000000; 
+    margin-top: 0; margin-bottom: 0.5rem; text-shadow: none; 
+    background-color: transparent; padding: 0; border-radius: 0;
+    align-self: flex-start; display: block; 
+}
+
+.project-card:hover .project-card__desc,
+.project-card:hover .project-card__btn {
+    display: block !important;
+}
+
+.project-card:hover .project-card__desc {
+    color: #333333; font-size: 1rem; line-height: 1.4;
+    max-width: 100%; margin-bottom: 1.5rem; padding: 0.5rem 1rem;
+    border-radius: 0.4rem; background-color: var(--desc-bg); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+}
+
+/* --- ESTILO DEL BOTÓN (COMPACTO) --- */
+.project-card__btn {
+    display: inline-block; 
+    padding: 0.55rem 1.3rem; border: none; border-radius: 9999px;
+    background: var(--accent); color: #fff; font-size: 0.9rem;
+    font-weight: 600; cursor: pointer; text-decoration: none; 
+}
+
+.project-card:hover .project-card__btn {
+    padding: 0.7rem 1.5rem; 
+    align-self: flex-start;
+    width: fit-content; 
+    display: inline-block !important; 
+}
+
+
+/* ------------------------------------------- */
+/* 4. ESTILOS DE LA SECCIÓN CTA */
+/* ------------------------------------------- */
+.cta-section {
+    background-color: #bababa; padding: 60px 20px; text-align: center;
+    margin-bottom: 0; color: #000000; 
+}
+.container-small { max-width: 800px; margin: auto; }
+
+
+/* =================================== */
+/* 5. MEDIA QUERIES (ADAPTACIÓN A MÓVILES) */
+/* =================================== */
+
+@media screen and (max-width: 768px) {
+    /* AJUSTE DE VARIABLES PARA MÓVIL */
+    :root { 
+        --closed: 5rem; 
+        --open: 26rem; 
+        --gap: 0.8rem; 
+    }
+
+    /* AJUSTE GENERAL DE LAYOUT */
+    .header-container { height: 70px; } 
+    body { padding-top: 70px; } 
+    .menu-icon { top: 15px; left: 15px; padding: 10px; } 
+    
+    /* AJUSTE DE HEADER */
+    .navbar-eco { padding: 5px 10px; padding-left: 60px; } 
+    .logo-container img { height: 35px; } 
+    .brand-name h1 { font-size: 1.5em; } 
+    .brand-name p { display: none; } 
+    
+    /* OCULTAR ELEMENTOS PESADOS/VISUALES EN MÓVIL */
+    .header-gif, .animated-roots-wrapper {
+        display: none;
+    }
+    
+    /* AJUSTE DE MENÚ LATERAL */
+    .sidebar-menu-content { padding-top: 80px; }
+    
+    /* AJUSTE SLIDER */
+    .head { padding: 30px 15px 20px; }
+    .slider { padding: 0 15px; }
+
+    /* Desactivar el HOVER en móvil */
+    .project-card:hover {
+        transform: scale(1.005) translateZ(0);
+    }
+    
+    /* 💡 LÓGICA DE MÓVIL (AL TOCAR) --- */
+    /* Se usa la clase 'active-mobile' que se añade con JavaScript al hacer click */
+    .project-card.active-mobile {
+        height: var(--open); 
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+        z-index: 99; 
+        transform: scale(1.01) translateZ(0); 
+    }
+
+    .project-card.active-mobile .project-card__content {
+        flex-direction: column; justify-content: flex-start; align-items: flex-start;
+        padding: 1.5rem; gap: 1.1rem;
+        background: linear-gradient(transparent 30%, rgba(255, 255, 255, 0.95) 100%); 
+    }
+
+    .project-card.active-mobile .project-card__title {
+        position: static; font-size: 1.8rem; 
+        color: #000000; 
+        margin-top: 0; margin-bottom: 0.5rem; text-shadow: none; 
+        align-self: flex-start; display: block; 
+    }
+    
+    .project-card.active-mobile .project-card__desc,
+    .project-card.active-mobile .project-card__btn {
+        display: block !important;
+    }
+    
+    .project-card.active-mobile .project-card__desc {
+        color: #333333; font-size: 1rem; line-height: 1.4;
+        max-width: 100%; margin-bottom: 1.5rem; padding: 0.5rem 1rem;
+        border-radius: 0.4rem; background-color: var(--desc-bg); 
+    }
+
+    .project-card.active-mobile .project-card__btn {
+        padding: 0.7rem 1.5rem; 
+        align-self: flex-start;
+        width: fit-content; 
+        display: inline-block !important;
+    }
+
+    /* Consistencia de fuente entre hover y active-mobile */
+    .project-card:hover .project-card__title,
+    .project-card.active-mobile .project-card__title {
+        font-size: 1.8rem;
+    }
+
+}

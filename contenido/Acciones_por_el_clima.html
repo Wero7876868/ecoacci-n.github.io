@@ -1,0 +1,951 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Impacto Climático en el Estado | EcoAcción</title>
+    
+    <script src="https://kit.fontawesome.com/bad7f7f5d4.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ===================================== */
+        /* 1. VARIABLES GLOBALES Y RESET */
+        /* ===================================== */
+        :root {
+            /* Variables de tu código original */
+            --color-neutral-900: #f0f0f0;
+            color-scheme: light dark;
+
+            /* Variables del Header/Menú */
+            --color-naranja-base: #FF8C00; 
+            --color-naranja-oscuro: #E67E22;
+            --color-texto-claro: #FFFFFF;
+            --color-verde-marca: #3ABF9E;
+            --color-amarillo-cta: #FFF000;
+        }
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+            font-family: "Montserrat Alternates", sans-serif; 
+        }
+
+        /* ===================================== */
+        /* 2. ESTILOS BASE Y AJUSTE DEL BODY */
+        /* ===================================== */
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #ffffff;
+            color: #333;
+            overflow-x: hidden;
+            
+            /* 🔑 AJUSTE CLAVE: Compensar la altura del header fijo (90px) */
+            padding-top: 90px; 
+        }
+
+        /* ESTILO PARA LA IMAGEN DE CABECERA (EXISTENTE) */
+        .page-header-image {
+            width: 100%;
+            height: 300px; 
+            background-image: url('../img/49f5ee672093c4c35db91f4c9310e.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Contenedor principal de las tarjetas (EXISTENTE - Z-index bajo) */
+        .main-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100%;
+            gap: 2em;
+            flex-wrap: wrap;
+            opacity: 1;
+            z-index: -2;
+        }
+
+        /* SVG positioning (EXISTENTE - Z-index bajo) */
+        .svg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -3;
+        }
+        
+        /* Estilos relacionados con las tarjetas (EXISTENTE) */
+        /* ... (Dejo los estilos de .card-container, .inner-container, etc. por si los usas) ... */
+        .card-container {
+            padding: 2px;
+            border-radius: 1.5em;
+            position: relative;
+            transform: scale(0.85);
+
+            background: linear-gradient(
+                -30deg,
+                var(--gradient-color),
+                transparent,
+                var(--gradient-color)
+                ),
+                linear-gradient(
+                to bottom,
+                var(--color-neutral-900),
+                var(--color-neutral-900)
+                );
+
+            &[↖️] {
+                --f: url(#NaturalezaOrgánica);
+                --electric-border-color: #8B4513;
+                --electric-light-color: oklch(from var(--electric-border-color) l c h);
+                --gradient-color: oklch(
+                    from var(--electric-border-color) 0.5 calc(c / 1.5) h / 0.6
+                );
+            }
+            &[🎨] {
+                --f: url(#NaturalezaOrgánica);
+                --electric-border-color: #38761D;
+                --electric-light-color: oklch(from var(--electric-border-color) l c h);
+                --gradient-color: oklch(
+                    from var(--electric-border-color) 0.5 calc(c / 1.5) h / 0.6
+                );
+            }
+        }
+        .inner-container {
+            position: relative;
+        }
+        .border-outer {
+            border: 2px solid oklch(from var(--electric-border-color) l c h / 0.5);
+            border-radius: 1.5em;
+            padding-right: 0.15em;
+            padding-bottom: 0.15em;
+            animation: organic-pulse 8s infinite alternate ease-in-out;
+        }
+        @keyframes organic-pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: scale(1.002) translateY(-0.5px);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.005);
+                opacity: 0.9;
+            }
+        }
+        .main-card {
+            width: 22rem;
+            aspect-ratio: 7 / 10;
+            border-radius: 1.5em;
+            border: 2px solid var(--electric-border-color);
+            margin-top: -4px;
+            margin-left: -4px;
+            filter: var(--f);
+            background-color: #f7f7f7;
+        }
+        .glow-layer-1 {
+            border: 2px solid oklch(from var(--electric-border-color) l c h / 0.5);
+            border-radius: 24px;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            filter: blur(2px);
+        }
+        .glow-layer-2 {
+            border: 2px solid var(--electric-light-color);
+            border-radius: 24px;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            filter: blur(8px);
+        }
+        .overlay-1,
+        .overlay-2 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 24px;
+            opacity: 0.5;
+            mix-blend-mode: overlay;
+            transform: scale(1.1);
+            filter: blur(16px);
+            background: linear-gradient(
+                -30deg,
+                #ffffff,
+                transparent 30%,
+                transparent 70%,
+                #ffffff
+                );
+        }
+        .overlay-1 {
+            opacity: 0.7;
+        }
+        .background-glow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 24px;
+            filter: blur(32px);
+            transform: scale(1.1);
+            opacity: 0.5;
+            z-index: -1;
+            background: linear-gradient(
+                -30deg,
+                var(--electric-light-color),
+                transparent,
+                var(--electric-border-color)
+                );
+        }
+        .content-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .content-top {
+            display: flex;
+            flex-direction: column;
+            padding: 48px;
+            padding-bottom: 16px;
+            height: 100%;
+            justify-content: flex-start;
+        }
+        .content-bottom {
+            display: flex;
+            flex-direction: column;
+            padding: 48px;
+            padding-top: 16px;
+        }
+        .title {
+            font-size: 1.25em;
+            font-weight: 500;
+            margin-top: 0;
+            color: #333;
+            line-height: 1.5;
+        }
+        .description {
+            font-size: 1.1em;
+            opacity: 0.9;
+            color: #555;
+            line-height: 1.4;
+        }
+        .divider {
+            margin-top: auto;
+            border: none;
+            height: 1px;
+            background-color: currentColor;
+            opacity: 0.2;
+            mask-image: linear-gradient(to right, transparent, black, transparent);
+            -webkit-mask-image: linear-gradient(
+                to right,
+                black,
+                transparent
+                );
+        }
+
+
+        /* ===================================== */
+        /* 3. ESTILOS DEL ENCABEZADO Y NAVBAR */
+        /* ===================================== */
+
+        /* --- ÍCONO DE MENÚ (HAMBURGUESA) --- */
+        .menu-icon {
+            cursor: pointer;
+            padding: 5px;
+            position: fixed; 
+            top: 25px; 
+            left: 30px; 
+            z-index: 1000;
+        }
+        .menu-icon .bar {
+            width: 30px; height: 4px; background-color: var(--color-texto-claro); margin: 6px 0;
+            display: block; border-radius: 2px; transition: all 0.3s ease;
+        }
+        .menu-icon.active .bar:nth-child(2) { opacity: 0; }
+        .menu-icon.active .bar:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+        .menu-icon.active .bar:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+        .header-container {
+            /* Asegúrate de tener 'fondo_encabezado.jpeg' */
+            background: url('fondo_encabezado.jpeg') center/cover;
+            padding: 0;
+            width: 100%;
+            height: 90px; 
+            position: fixed; 
+            top: 0;
+            left: 0;
+            z-index: 100;
+            overflow: hidden; 
+        }
+        .navbar-eco {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start; 
+            margin: 0;
+            width: 100%;
+            padding: 15px 30px;
+            padding-left: 90px; /* Espacio para el icono de menú */
+            height: 100%; 
+            
+            /* Glassmorphism */
+            background: rgba(255, 255, 255, 0.1); 
+            backdrop-filter: blur(8px); 
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            position: relative; 
+            z-index: 10; 
+        }
+        .logo-container img {
+            height: 50px;
+            width: auto;
+            margin-right: 15px;
+        }
+        .brand-name {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+        .brand-name h1 {
+            font-size: 2.5em; 
+            font-weight: 800;
+            margin: 0;
+            color: #FFFFFF;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            font-family: 'Poppins', sans-serif;
+        }
+        .brand-name h1 span {
+            color: var(--color-amarillo-cta);
+        }
+        .brand-name p {
+            font-size: 0.9em;
+            color: #fff;
+            margin-top: 5px;
+            font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* --- GIF y Raíces (Animaciones) --- */
+        .header-gif {
+            position: absolute;
+            top: 0px; 
+            right: 10px; 
+            height: 90px; 
+            width: auto; 
+            z-index: 102; 
+            pointer-events: none; 
+            transform: scale(1); 
+            transform-origin: right center;
+            transition: transform 0.3s ease;
+        }
+        .animated-roots-wrapper {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 5; pointer-events: none; perspective: 1000px;
+            transform: scale(1);
+            transform-origin: left center;
+            transition: transform 0.3s ease;
+        }
+        .root {
+            position: absolute; background-color: rgba(100, 70, 40, 0.6); border-radius: 50%;
+            height: 4px; transform-origin: left center; opacity: 0;
+            animation: growRoot 15s ease-in-out infinite forwards;
+        }
+        @keyframes growRoot {
+            0% { transform: scaleX(0); opacity: 0; } 10% { opacity: 1; }
+            80% { transform: scaleX(1); opacity: 0.8; } 100% { transform: scaleX(1); opacity: 0; }
+        }
+        .root-1 { top: 20%; left: 0; width: 150px; transform: rotate(10deg) scaleX(0); animation-delay: 0s; }
+        .root-2 { top: 35%; left: 0; width: 180px; transform: rotate(-5deg) scaleX(0); animation-delay: 2s; }
+        .root-3 { top: 50%; left: 0; width: 120px; transform: rotate(20deg) scaleX(0); animation-delay: 4s; }
+        .root-4 { top: 65%; left: 0; width: 200px; transform: rotate(-15deg) scaleX(0); animation-delay: 6s; }
+        .root-5 { top: 25%; right: 0; width: 170px; transform-origin: right center; transform: rotate(-10deg) scaleX(0); animation-delay: 1s; background-color: rgba(80, 50, 20, 0.6); }
+        .root-6 { top: 40%; right: 0; width: 130px; transform-origin: right center; transform: rotate(5deg) scaleX(0); animation-delay: 3s; background-color: rgba(90, 60, 30, 0.6); }
+        .root-7 { top: 55%; right: 0; width: 190px; transform-origin: right center; transform: rotate(-20deg) scaleX(0); animation-delay: 5s; background-color: rgba(70, 40, 10, 0.6); }
+        .root-8 { top: 70%; right: 0; width: 160px; transform-origin: right center; transform: rotate(15deg) scaleX(0); animation-delay: 7s; background-color: rgba(110, 80, 50, 0.6); }
+        .root::before, .root::after {
+            content: ''; position: absolute; background-color: inherit; border-radius: 50%;
+            height: 3px; transform-origin: left center; opacity: 0;
+            animation: growBranch 15s ease-in-out infinite forwards;
+        }
+        .root::before { width: 60%; top: -5px; left: 30%; transform: rotate(45deg) scaleX(0); animation-delay: 0.5s; }
+        .root::after { width: 40%; bottom: -5px; left: 50%; transform: rotate(-30deg) scaleX(0); animation-delay: 1.5s; }
+        @keyframes growBranch {
+            0% { transform: scaleX(0); opacity: 0; } 20% { opacity: 1; }
+            90% { transform: scaleX(1); opacity: 0.7; } 100% { transform: scaleX(1); opacity: 0; }
+        }
+
+
+        /* ===================================== */
+        /* 4. ESTILOS DEL MENÚ LATERAL (SIDEBAR) */
+        /* ===================================== */
+        .sidebar-menu {
+            position: fixed; top: 0; left: 0; height: 100vh; 
+            width: 300px;
+            background-color: var(--color-naranja-base); 
+            box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3); z-index: 999; 
+            overflow-y: auto; 
+            transform: translateX(-100%); 
+            transition: transform 0.4s ease-out; 
+        }
+        .sidebar-menu.visible { 
+            transform: translateX(0); 
+        }
+        .sidebar-menu-content { 
+            padding-top: 100px; 
+        } 
+
+        .dropdown-list { 
+            list-style: none; padding: 0; margin: 0; 
+        }
+        .dropdown-list li a {
+            display: flex; align-items: center; padding: 15px 30px; text-decoration: none;
+            color: var(--color-texto-claro); font-size: 1.1em; font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2); transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        .dropdown-list li a:hover { 
+            background-color: var(--color-naranja-oscuro); 
+        }
+        .dropdown-list li a i { 
+            margin-right: 15px; font-size: 1.2em; 
+        }
+
+        /* Animación escalonada */
+        .animated-item {
+            transform: translateX(-20px); opacity: 0;
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        }
+        .sidebar-menu.visible .animated-item {
+            transform: translateX(0); opacity: 1;
+        }
+        /* Retrasos para el efecto escalonado */
+        .sidebar-menu.visible .animated-item:nth-child(1) { transition-delay: 0.1s; }
+        .sidebar-menu.visible .animated-item:nth-child(2) { transition-delay: 0.2s; }
+        .sidebar-menu.visible .animated-item:nth-child(3) { transition-delay: 0.3s; }
+        .sidebar-menu.visible .animated-item:nth-child(4) { transition-delay: 0.4s; }
+        .sidebar-menu.visible .animated-item:nth-child(5) { transition-delay: 0.5s; }
+        .sidebar-menu.visible .animated-item:nth-child(6) { transition-delay: 0.6s; }
+        .sidebar-menu.visible .animated-item:nth-child(7) { transition-delay: 0.7s; }
+
+
+        /* ===================================== */
+        /* 5. ESTILOS DE LA PÁGINA (EXISTENTES) */
+        /* ===================================== */
+        .new-main-content {
+            padding: 20px 30px 50px 30px; 
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .new-main-content h1 {
+            font-size: 2.8em;
+            color: #1a535c;
+            margin-bottom: 0.5em;
+            border-bottom: 3px solid #4ecdc4;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 40px;
+            align-items: start;
+        }
+        .main-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .sidebar-column {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .section-box {
+            background-color: #f0f7f4; 
+            background-image: linear-gradient(to bottom right, #f8fcfb, #eaf4f3); 
+            border-radius: 12px; 
+            padding: 28px; 
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12); 
+            border: 1px solid #c8e6e3; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+        .section-box:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15); 
+        }
+        .section-box h2 {
+            font-size: 1.9em; 
+            color: #1a535c; 
+            margin-bottom: 18px; 
+            border-left: 6px solid #ff8c00; 
+            padding-left: 12px; 
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05); 
+        }
+        .section-box p, .section-box ul {
+            line-height: 1.7; 
+            color: #3d3d3d; 
+            margin-bottom: 1.2em;
+            text-align: justify;
+        }
+        .section-box ul {
+            list-style: disc inside;
+            padding-left: 20px;
+        }
+        .media-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        .media-item {
+            background-color: #e0f2f1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            text-align: center;
+            padding: 10px;
+        }
+        .media-item img, .media-item video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        .media-item p {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .document-list ul {
+            list-style: none;
+            padding: 0;
+        }
+        .document-list li {
+            margin-bottom: 10px;
+        }
+        .document-list a {
+            display: block;
+            background-color: #e0f2f1;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #1a535c;
+            transition: background-color 0.3s;
+        }
+        .document-list a:hover {
+            background-color: #c0e0df;
+        }
+        /* Contenedor principal de los botones flotantes */
+        .floating-menu-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 101;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 15px;
+        }
+        /* Estilo base del botón principal */
+        .action-button {
+            background-color: #ff8c00;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            text-decoration: none;
+            position: relative;
+            z-index: 10;
+        }
+        .action-button:hover {
+            background-color: #cc7000;
+            transform: scale(1.05);
+        }
+        .action-button.house {
+            font-size: 1.8em;
+        }
+        .action-button.world {
+            font-size: 1.8em;
+        }
+        /* Estilo base para los submenús individuales */
+        .floating-submenu {
+            position: absolute;
+            right: 100%; 
+            width: 300px; 
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            padding: 5px 0;
+            z-index: 5;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, transform 0.3s;
+            transform: translateX(10px);
+        }
+        /* Posicionamiento específico para cada submenú */
+        .house-container:hover .submenu-house {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-10px);
+        }
+        .submenu-house {
+            top: 0;
+        }
+        .world-container:hover .submenu-world {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-10px);
+        }
+        .submenu-world {
+            top: 0;
+        }
+        /* Estilos para los enlaces del submenú */
+        .floating-submenu a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+            font-size: 1em;
+            border-left: 3px solid transparent;
+            transition: background-color 0.2s, border-left 0.2s;
+            white-space: nowrap;
+        }
+        .floating-submenu a:hover {
+            background-color: #f0f7f4;
+            border-left-color: #2A9D8F;
+        }
+
+        /* ===================================== */
+        /* 6. MEDIA QUERIES (ADAPTADAS) */
+        /* ===================================== */
+        @media screen and (max-width: 768px) {
+            /* AJUSTE GENERAL */
+            .header-container { height: 80px; } 
+            body { padding-top: 80px; } 
+            .new-main-content { padding-top: 10px; } 
+
+            /* AJUSTE DE HEADER */
+            .navbar-eco { padding: 10px 15px; padding-left: 70px; }
+            .logo-container img { height: 40px; margin-right: 10px; }
+            .brand-name h1 { font-size: 1.8em; }
+            .brand-name p { font-size: 0.7em; margin-top: 2px; }
+            .menu-icon { top: 20px; left: 20px; }
+            
+            .header-gif { height: 80px; transform: scale(0.7); } 
+            .animated-roots-wrapper { transform: scale(0.7); } 
+            
+            /* AJUSTE DE MENÚ LATERAL */
+            .sidebar-menu { width: 100%; height: 100vh; }
+            .sidebar-menu-content { padding-top: 80px; }
+            .dropdown-list li a { font-size: 1em; padding: 12px 20px; }
+
+            /* AJUSTE DE CONTENIDO */
+            .content-grid { grid-template-columns: 1fr; }
+            .page-header-image { height: 200px; } 
+
+            /* Media Queries existentes de la página */
+            .floating-menu-container { bottom: 20px; right: 20px; }
+            .action-button { width: 50px; height: 50px; font-size: 1.8em; }
+            .action-button.house, .action-button.world { font-size: 1.5em; }
+            .floating-submenu { width: 250px; right: 100%; }
+            .house-container:hover .submenu-house,
+            .world-container:hover .submenu-world { transform: translateX(-5px); }
+        }
+
+        @media screen and (max-width: 425px) {
+            /* AJUSTE GENERAL */
+            .new-main-content { padding-left: 15px; padding-right: 15px; }
+
+            /* AJUSTE DE HEADER */
+            .header-gif { transform: scale(0.6); } 
+            .animated-roots-wrapper { transform: scale(0.5); }
+            
+            /* AJUSTE DE CONTENIDO */
+            .section-box h2 { font-size: 1.5em; }
+        }
+
+    </style>
+</head>
+
+<body>
+    <svg class="svg-container">
+        <defs>
+            <filter id="NaturalezaOrgánica" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%"
+                height="140%">
+                <feTurbulence type="turbulence" baseFrequency="0.01 0.005" numOctaves="3" result="noise" seed="42">
+                    <animate attributeName="baseFrequency" values="0.01 0.005; 0.015 0.008; 0.01 0.005" dur="15s"
+                        repeatCount="indefinite" calcMode="linear" />
+                </feTurbulence>
+                <feDisplacementMap in="SourceGraphic" in2="noise" scale="10" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+
+            <filter id="🌀↖️">
+                <feTurbulence />
+            </filter>
+            <filter id="🌀🎨">
+                <feTurbulence />
+            </filter>
+        </defs>
+    </svg>
+
+    <div class="menu-icon" id="menuIcon">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+
+    <div class="header-container">
+        <nav class="navbar-eco">
+            <div class="logo-container">
+                <img src="logo_pw.png" alt="Logo EcoAcción">
+            </div>
+
+            <div class="brand-name">
+                <h1>Eco<span>Acción</span></h1>
+                <p>¡Tu Impacto Comienza Aquí!</p>
+            </div>
+        </nav>
+        <img src="arbol_enc.gif" alt="Árbol animado" class="header-gif">
+        
+        <div class="animated-roots-wrapper">
+            <div class="root root-1"></div>
+            <div class="root root-2"></div>
+            <div class="root root-3"></div>
+            <div class="root root-4"></div>
+            <div class="root root-5"></div>
+            <div class="root root-6"></div>
+            <div class="root root-7"></div>
+            <div class="root root-8"></div>
+        </div>
+    </div>
+        
+    <div class="sidebar-menu" id="sidebarMenu">
+        <div class="sidebar-menu-content">
+            <ul class="dropdown-list">
+                <li class="animated-item"><a href="../index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li class="animated-item"><a href="S_E_C_C.html"><i class="fas fa-globe-americas"></i> Sobre el cambio climático</a></li>
+                <li class="animated-item"><a href="Acciones_por_el_clima.html"><i class="fas fa-leaf"></i> Acciones para el clima</a></li>
+                <li class="animated-item"><a href="proyectos_campañas.html"><i class="fas fa-project-diagram"></i> Proyectos y campañas</a></li>
+                <li class="animated-item"><a href="particioa.html"><i class="fas fa-users"></i> Participa</a></li>
+                <li class="animated-item"><a href="Recursos.html"><i class="fas fa-book-open"></i> Recursos</a></li>
+                <li class="animated-item"><a href="sobre_nosotros.html"><i class="fas fa-handshake"></i> Sobre nosotros</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <main class="new-main-content">
+        <h1>Impacto Regional y Gobernanza Climática en el Estado</h1>
+        
+        
+        
+        <div class="section-box media-section">
+            <h2>Evidencia y Acción Visual 📸</h2>
+            <div class="media-gallery">
+                <div class="media-item">
+                    <img src="CALIDAD DEL AIRE-UAEH.jpg" alt="Medición de la calidad del aire o contaminación industrial">
+                    <p>Calidad del Aire: Contaminación en zonas industriales y urbanas.</p>
+                </div>
+                <div class="media-item">
+                    <img src="sobreexplotacion_agua.jpg" alt="Señales de sobreexplotación de acuíferos">
+                    <p>Estrés Hídrico: Un desafío central para la estabilidad del estado.</p>
+                </div>
+                <div class="media-item">
+                    <img src="rio tula.png" alt="Contaminación y residuos en el río Tula">
+                    <p>Contaminación Hídrica: El impacto directo en cuerpos de agua como el Río Tula.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="main-column">
+
+                <div class="section-box effects-state-section">
+                    <h2>Efectos Principales del Cambio Climático en el Estado</h2>
+                    <p>
+                        El estado de Hidalgo, dada su diversidad geográfica, enfrenta impactos climáticos complejos. Los
+                        efectos más notables incluyen:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Estrés Hídrico y Sequías Prolongadas:</strong> El aumento de la temperatura y la alteración de
+                            las lluvias incrementan la evaporación y reducen la recarga de acuíferos y presas. Esto
+                            afecta la seguridad alimentaria en zonas agrícolas y el abasto de agua potable en
+                            zonas urbanas y rurales.
+                        </li>
+                        <li>
+                            <strong>Eventos de Calor Extremo:</strong> El incremento en la frecuencia e intensidad de las
+                            olas de calor representa un riesgo directo para la salud pública, especialmente en
+                            poblaciones vulnerables y trabajadores expuestos.
+                        </li>
+                        <li>
+                            <strong>Pérdida de Capital Natural:</strong> La combinación de sequía y altas temperaturas aumenta
+                            el riesgo de incendios forestales, degradando la cubierta vegetal que es vital para la
+                            captura de agua y carbono, acelerando la desertificación.
+                        </li>
+                        <li>
+                            <strong>Inundaciones y Desastres:</strong> Aunque la sequía es prevalente, los eventos de
+                            lluvia se vuelven más intensos en periodos cortos, provocando inundaciones repentinas en
+                            zonas bajas y afectando infraestructura crítica (ej. la zona de Tula).
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section-box vulnerable-zones-section">
+                    <h2>Zonas Clave y Vulnerables: Sierra Madre Oriental</h2>
+                    <p>
+                        La <strong>Sierra Madre Oriental</strong> es un ecosistema crucial que actúa como el principal regulador
+                        hídrico y climático del estado, pero es extremadamente vulnerable:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Riesgo Forestal:</strong> El aumento de temperaturas y la tala (legal e ilegal) debilitan los
+                            bosques, haciéndolos más susceptibles a plagas y a la erosión. La pérdida de estos bosques
+                            compromete la filtración de agua hacia los acuíferos.
+                        </li>
+                        <li>
+                            <strong>Afectación a la Biodiversidad:</strong> La riqueza biológica de la Sierra, incluyendo especies
+                            endémicas, se ve amenazada por el desplazamiento de hábitats y las condiciones de
+                            estrés térmico.
+                        </li>
+                        <li>
+                            <strong>Huasteca Hidalguense:</strong> Esta subregión enfrenta la combinación de deforestación y
+                            cambios en los patrones de lluvia, afectando la producción agrícola y los medios de vida
+                            tradicionales.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sidebar-column">
+
+                <div class="section-box specific-challenges-section">
+                    <h2>Desafíos Ambientales Específicos</h2>
+                    <p>
+                        La mitigación del cambio climático en el estado también debe abordar problemas de contaminación
+                        directa, muchos de los cuales tienen origen industrial o urbano:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Calidad del Aire:</strong> La actividad industrial y vehicular en el sur del estado (corredor
+                            Tula-Tepeji) genera contaminantes atmosféricos que impactan la salud de la población y la
+                            calidad ambiental general.
+                        </li>
+                        <li>
+                            <strong>Gestión de Residuos:</strong> El manejo inadecuado de residuos sólidos en municipios es una fuente
+                            de emisiones de metano (CH<sub>4</sub>), un gas de efecto invernadero mucho más potente
+                            que el CO<sub>2</sub>.
+                        </li>
+                        <li>
+                            <strong>Contaminación de Cuerpos de Agua:</strong> La descarga de aguas residuales y efluentes industriales
+                            afecta la salud de los ríos (como el río Tula) y compromete las fuentes de agua dulce.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="section-box response-mechanisms-section">
+                    <h2>Gobernanza y Mecanismos de Respuesta</h2>
+                    <p>
+                        Para hacer frente a estos desafíos, se requiere un enfoque de <strong>Gobernanza Climática</strong> que
+                        integre políticas a nivel estatal y municipal.
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Planes de Acción Climática:</strong> La formulación e implementación del <strong>Programa Estatal de
+                            Acción ante el Cambio Climático (PEACC)</strong> es fundamental para establecer metas de
+                            mitigación y estrategias de adaptación a nivel local.
+                        </li>
+                        <li>
+                            <strong>Alerta Temprana:</strong> Fortalecer los sistemas de alerta temprana para desastres hidrometeorológicos
+                            (inundaciones, sequías) y olas de calor, protegiendo a la población vulnerable.
+                        </li>
+                        <li>
+                            <strong>Inversión en Infraestructura Verde:</strong> Priorizar la inversión en infraestructura que
+                            promueva la captura de carbono y agua, como la <strong>restauración de bosques y humedales</strong>.
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <div class="floating-menu-container">
+        <div class="house-container" style="position: relative;">
+            <div class="floating-submenu submenu-house">
+                <a href="acciones_casa.html">Pag de Acción desde casa</a>
+            </div>
+            <a href="acciones_casa.html" class="action-button house" title="Acción desde casa">🏠</a>
+        </div>
+
+        <div class="world-container" style="position: relative;">
+            <div class="floating-submenu submenu-world">
+                <a href="acciones_comunidad.html">Pag de Acción desde la comunidad</a>
+            </div>
+            <a href="acciones_comunidad.html" class="action-button world" title="Acción desde la comunidad">🌍</a>
+        </div>
+    </div>
+
+    <script>
+        const menuIcon = document.getElementById('menuIcon');
+        const sidebarMenu = document.getElementById('sidebarMenu'); 
+
+        menuIcon.addEventListener('click', () => {
+            sidebarMenu.classList.toggle('visible');
+            menuIcon.classList.toggle('active');
+            
+            // Bloquear/desbloquear el scroll del body
+            if (sidebarMenu.classList.contains('visible')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

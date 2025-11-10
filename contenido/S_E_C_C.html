@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta charset="UTF-8">
+    <title>Sobre el Cambio Climático</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://public.codepenassets.com/css/reset-2.0.min.css">
+    <link rel="stylesheet" href="./style_secc.css">
+
+    <style>
+        /* Estilos base de la página (mantienen los estilos de tu archivo style.css) */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            /* Ajustado el padding superior, ya no hay header fijo que compensar */
+            padding-top: 50px; 
+            padding-left: 100px;
+            padding-right: 100px;
+            padding-bottom: 50px;
+            color: #222;
+            font-family: "Plus Jakarta Sans", sans-serif;
+        }
+
+        /* --- Tu Código CSS Existente (Asegúrate de que este también esté en tu archivo style.css si lo usas) --- */
+        body article {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        body article header {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+            min-height: 400px;
+            padding: 50px;
+            border-radius: 16px;
+            color: #fff;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        body article header .upper-header {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 20px;
+        }
+
+        body article header .upper-header .mini-title {
+            font-size: 1.125rem;
+            font-weight: bold;
+            letter-spacing: 0.4rem;
+            text-transform: uppercase;
+            opacity: 0.9;
+        }
+
+        body article header .upper-header .date-since {
+            display: flex;
+            align-items: center;
+            opacity: 0.5;
+            font-size: 0.875rem;
+        }
+
+        body article header .upper-header .date-since .date-value {
+            display: inline-block;
+            padding-bottom: 2px;
+        }
+
+        body article header .upper-header .date-since svg {
+            width: 20px;
+            margin-left: 10px;
+        }
+
+        body article header .lower-header {
+            padding-top: 50px;
+        }
+
+        body article header .lower-header .tags-container {
+            display: flex;
+            align-items: center;
+            opacity: 0.75;
+            margin-bottom: 12px;
+        }
+
+        body article header .lower-header .tags-container>span:not(:nth-child(2))::before {
+            content: ", ";
+        }
+
+        body article header .lower-header .tags-container svg {
+            width: 20px;
+            margin-right: 10px;
+        }
+
+        body article header .lower-header .tags-container span {
+            font-size: 0.875rem;
+        }
+
+        body article header .lower-header .title {
+            margin: 20px 0;
+            font-size: 3rem;
+            font-weight: bold;
+            opacity: 0.9;
+        }
+
+        body article header .lower-header .subtitle {
+            width: 50%;
+            margin-top: 10px;
+            opacity: 0.75;
+            line-height: 1.75;
+        }
+
+        body .summary {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            padding: 30px 50px;
+            border-radius: 16px;
+            box-shadow: 0 0 0 1px #f2f2f2;
+        }
+
+        body .summary .summary-item {
+            width: 100%;
+            padding-right: 20px;
+        }
+
+        body .summary .summary-item .item-title {
+            color: #999;
+        }
+
+        body .summary .summary-item .item-text {
+            margin-top: 12px;
+            font-size: 1.5rem;
+        }
+
+        body .main-article {
+            width: 100%;
+            margin-top: 50px;
+            padding-bottom: 50px;
+            line-height: 1.75;
+        }
+
+        body .main-article h4 {
+            margin-top: 60px;
+            margin-bottom: 20px;
+            font-size: 1.25em;
+        }
+
+        body .main-article p {
+            margin-bottom: 20px;
+            color: #777;
+            font-size: 1.125em;
+        }
+
+        body .main-article blockquote {
+            position: relative;
+            margin: 40px 0;
+            padding: 40px;
+            background-color: #f8f8f8;
+            border-radius: 16px;
+        }
+
+        body .main-article blockquote::before {
+            content: url("https://icons.craftwork.design/static/media/QuotesFill.f65b03951f44e212816420b00909f4df.svg");
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            transform: scale(2);
+            opacity: 0.1;
+        }
+
+        body .main-article blockquote::after {
+            content: url("https://icons.craftwork.design/static/media/QuotesFill.f65b03951f44e212816420b00909f4df.svg");
+            position: absolute;
+            bottom: -10px;
+            right: -10px;
+            transform: scale(2) rotate(180deg);
+            opacity: 0.1;
+        }
+
+        body .main-article .gallery {
+            display: grid;
+            gap: 20px;
+            grid-template-areas: "img1 img1 img2 img3" "img1 img1 img4 img5";
+            min-height: 400px;
+            margin-top: 40px;
+        }
+
+        body .main-article .gallery .image-item {
+            min-height: 200px;
+            background-color: #eee;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 8px;
+            transition: 250ms;
+        }
+
+        body .main-article .gallery .image-item:hover {
+            opacity: 0.9;
+            cursor: pointer;
+        }
+
+        body .main-article .gallery .image-1 {
+            grid-area: img1;
+        }
+
+        body .main-article .gallery .image-2 {
+            grid-area: img2;
+        }
+
+        body .main-article .gallery .image-3 {
+            grid-area: img3;
+        }
+
+        body .main-article .gallery .image-4 {
+            grid-area: img4;
+        }
+
+        body .main-article .gallery .image-5 {
+            grid-area: img5;
+        }
+
+        body .main-article .gallery .gallery-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 100vw;
+            height: 100vh;
+            padding: 40px;
+            background-color: #22222288;
+            transition: 500ms;
+        }
+
+        body .main-article .gallery .gallery-mask img {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: contain;
+            object-fit: contain;
+            transition: 500ms;
+        }
+
+        body .main-article .gallery .mask-off {
+            visibility: hidden;
+            background-color: #22222200;
+        }
+
+        body .main-article .gallery .mask-off img {
+            visibility: hidden;
+            opacity: 0;
+        }
+
+        @media screen and (max-width: 1024px) {
+            body {
+                padding: 50px;
+            }
+
+            body article header .lower-header .subtitle {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            body article header .lower-header .title {
+                word-break: break-all;
+            }
+
+            body article .summary {
+                flex-direction: column;
+            }
+
+            body article .summary .summary-item:not(:last-child) {
+                padding-bottom: 30px;
+            }
+
+            body article .main-article .gallery {
+                grid-template-areas: "img1 img1" "img1 img1" "img2 img3" "img4 img5";
+            }
+        }
+
+        @media screen and (max-width: 425px) {
+            body {
+                padding: 25px;
+            }
+
+            body article header .upper-header .date-since {
+                display: none;
+            }
+        }
+
+        /* --- ESTILOS DE HEADER Y MENÚ ELIMINADOS --- */
+        /* Eliminados todos los estilos del header fijo (.header, .container, .btn-menu, .logo, etc.) */
+        /* Eliminados todos los estilos del menú desplegable lateral (#btn-menu, .container-menu, .cont-menu, etc.) */
+    </style>
+</head>
+
+<body>
+
+<div class="menu-icon" id="menuIcon">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+</div>
+
+<div class="header-container">
+    <nav class="navbar-eco">
+        <div class="logo-container">
+            <img src="logo_pw.png" alt="Logo EcoAcción">
+        </div>
+
+        <div class="brand-name">
+            <h1>Eco<span>Acción</span></h1>
+            <p>¡Tu Impacto Comienza Aquí!</p>
+        </div>
+    </nav>
+    <img src="arbol_enc.gif" alt="Árbol animado" class="header-gif">
+    
+    <div class="animated-roots-wrapper">
+        <div class="root root-1"></div>
+        <div class="root root-2"></div>
+        <div class="root root-3"></div>
+        <div class="root root-4"></div>
+        <div class="root root-5"></div>
+        <div class="root root-6"></div>
+        <div class="root root-7"></div>
+        <div class="root root-8"></div>
+    </div>
+</div>
+    
+<div class="sidebar-menu" id="sidebarMenu">
+    <div class="sidebar-menu-content">
+        <ul class="dropdown-list">
+            <li class="animated-item"><a href="../index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li class="animated-item"><a href="S_E_C_C.html"><i class="fas fa-globe-americas"></i> Sobre el cambio climático</a></li>
+                <li class="animated-item"><a href="Acciones_por_el_clima.html"><i class="fas fa-leaf"></i> Acciones para el clima</a></li>
+                <li class="animated-item"><a href="proyectos_campañas.html"><i class="fas fa-project-diagram"></i> Proyectos y campañas</a></li>
+                <li class="animated-item"><a href="particioa.html"><i class="fas fa-users"></i> Participa</a></li>
+                <li class="animated-item"><a href="Recursos.html"><i class="fas fa-book-open"></i> Recursos</a></li>
+                <li class="animated-item"><a href="sobre_nosotros.html"><i class="fas fa-handshake"></i> Sobre nosotros</a></li>
+        </ul>
+    </div>
+</div>
+
+
+    <article>
+        <header style="background-image: url('header_2795x1310_dark.jpg');">
+            <div class="upper-header">
+                <div class="mini-title"></div>
+                <div class="date-since">
+                    <p><span class="date-value" id="sinceData"></span></p>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                        <defs>
+                            <style>
+                                .d {
+                                    width: 20px;
+                                    fill: #fff;
+                                    opacity: .5;
+                                }
+                            </style>
+                        </defs>
+                        <path class="d"
+                            d="M15,0C6.75,0,0,6.75,0,15s6.75,15,15,15,15-6.75,15-15S23.25,0,15,0Zm7.35,16.65h-7.35c-.83,0-1.5-.67-1.5-1.5V7.8c0-.9,.6-1.5,1.5-1.5s1.5,.6,1.5,1.5v5.85h5.85c.9,0,1.5,.6,1.5,1.5s-.6,1.5-1.5,1.5Z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="lower-header">
+                <div class="tags-container">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                        <defs>
+                            <style>
+                                .d {
+                                    width: 20px;
+                                    fill: #fff;
+                                    opacity: .75;
+                                }
+                            </style>
+                        </defs>
+                        <path class="d"
+                            d="M19.22,9.66L10.77,1.21c-.74-.74-1.86-1.21-2.97-1.21H1.67C.75,0,0,.75,0,1.67V7.8c0,1.11,.46,2.23,1.3,2.97l8.45,8.46c1,1,2.62,1,3.62,0l5.94-5.95c.93-.93,.93-2.6-.09-3.62ZM6.96,6.35c-.59,.59-1.56,.59-2.15,0-.59-.59-.59-1.56,0-2.15,.59-.59,1.56-.59,2.15,0,.59,.59,.59,1.56,0,2.15Z" />
+                    </svg>
+                    <span>Clima</span><span>Medio Ambiente</span><span>Sostenibilidad</span>
+                </div>
+                <h1 class="title">Sobre el <b>Cambio Climático</b>: Entendiendo la Urgencia y la <b>Acción Global</b></h1>
+                <p class="subtitle">Análisis de los conceptos clave, las metas del <b>ODS 13</b> y los <b>datos</b> que confirman la
+                    <b>emergencia climática global</b>.</p>
+            </div>
+        </header>
+
+        <section class="main-article">
+            <h4>Definiciones y Conceptos Clave 🌍</h4>
+            <p>El <b>cambio climático</b> se refiere a las variaciones a largo plazo de las temperaturas y los patrones
+                climáticos. Estos cambios pueden ser naturales, pero desde el siglo XIX, el factor dominante ha sido la
+                <b>actividad humana</b>, principalmente a través de la quema de <b>combustibles fósiles</b> (carbón, petróleo y gas),
+                que liberan <b>gases de efecto invernadero (GEI)</b>.</p>
+            <p>El <b>efecto invernadero</b> es un proceso natural esencial para la vida en la Tierra, donde ciertos gases
+                en la atmósfera retienen parte del calor del sol. Sin embargo, el aumento de GEI como el dióxido de
+                carbono (<b>CO<sub>2</sub></b>), el metano (<b>CH<sub>4</sub></b>) y el óxido nitroso (<b>N<sub>2</sub>O</b>) intensifica
+                este efecto, llevando al <b>calentamiento global</b> (el aumento de la temperatura promedio de la Tierra).</p>
+
+            <p>Es vital diferenciar entre el <b>clima</b> (el promedio de las condiciones atmosféricas a largo plazo) y el
+                <b>tiempo meteorológico</b> (las condiciones a corto plazo). El <b>cambio climático</b> es una alteración
+                significativa y duradera de los patrones globales.</p>
+
+                <div align="center" style="margin: 40px;">
+    <h4>Quizz</h4>
+    <audio controls src="quizz.mp3" style="width: 100%; max-width: 500px;">
+        Tu navegador no soporta el formato.
+    </audio>
+</div>
+			</div>
+
+            ---
+
+            <h4>Metas del <b>Objetivo de Desarrollo Sostenible (ODS) 13</b>: Acción por el Clima 🎯</h4>
+            <p>El <b>ODS 13</b> de las Naciones Unidas busca <b>"Adoptar medidas urgentes para combatir el cambio climático y sus
+                efectos"</b>. La consecución de estas metas es fundamental para <b>limitar el calentamiento global</b> y preparar
+                a las sociedades para los impactos inevitables. Las metas clave incluyen:</p>
+            <ul>
+                <li><b>Fortalecer la Resiliencia y Adaptación:</b> Aumentar la capacidad de <b>adaptación</b> a los riesgos
+                    relacionados con el clima y los <b>desastres naturales</b> en todos los países.</li>
+                <li><b>Integrar Medidas:</b> Incorporar medidas relativas al <b>cambio climático</b> en las <b>políticas</b>, estrategias y
+                    planes nacionales.</li>
+                <li><b>Educación y Sensibilización:</b> Mejorar la <b>educación</b>, la sensibilización y la capacidad humana e
+                    institucional respecto a la <b>mitigación</b> del cambio climático, la <b>adaptación</b>, la reducción de sus
+                    efectos y la <b>alerta temprana</b>.</li>
+                <li><b>Movilización de Fondos:</b> Cumplir el compromiso de los países desarrollados de movilizar
+                    conjuntamente <b>$100.000 millones</b> anualmente para apoyar las necesidades de adaptación y mitigación en
+                    los países en desarrollo.</li>
+            </ul>
+
+            ---
+
+            <h4>Causas y Consecuencias del <b>Cambio Climático</b> 🌡️</h4>
+            <p>Las <b>causas</b> principales del <b>calentamiento global</b> son inequívocas: la quema de <b>combustibles fósiles</b>
+                para la generación de energía, el transporte y la industria; la <b>deforestación</b> y los cambios en el uso
+                del suelo; y ciertas <b>prácticas agrícolas</b> y ganaderas que liberan metano y óxido nitroso.</p>
+            <p>Las <b>consecuencias</b> ya son visibles y se intensifican a nivel mundial:</p>
+            <ul>
+                <li><b>Aumento de la Temperatura:</b> Aumento de la <b>temperatura media global</b>, con <b>olas de calor</b> más
+                    frecuentes e intensas.</li>
+                <li><b>Eventos Extremos:</b> Mayor frecuencia e intensidad de fenómenos <b>meteorológicos extremos</b>, como
+                    <b>sequías prolongadas</b>, <b>inundaciones</b>, tormentas y huracanes.</li>
+                <li><b>Deshielo y Nivel del Mar:</b> <b>Deshielo</b> de glaciares y casquetes polares, provocando el <b>aumento del
+                    nivel del mar</b>, que amenaza a las comunidades costeras y a los pequeños estados insulares.</li>
+                <li><b>Impacto en Ecosistemas:</b> <b>Acidificación del océano</b>, <b>blanqueamiento de corales</b> y <b>pérdida de
+                    biodiversidad</b>.</li>
+            </ul>
+            <div class="gallery">
+                <div class="gallery-mask mask-off">
+                    <img class="mask-image" src="" alt="" width="200">
+                </div>
+
+                <div class="image-item image-1" alt="Tierra agrietada por sequía" width="200"
+                    style="background-image: url('sequia.jpeg');">
+                </div>
+                <div class="image-item image-2" alt="Acuifero sobreexplotado" width="200"
+                    style="background-image: url('acuifero-sobreexplotado.jpeg');">
+                </div>
+                <div class="image-item image-3" alt="Bosque en llamas por incendios" width="200"
+                    style="background-image: url('incendios.jpg');">
+                </div>
+                <div class="image-item image-4" alt="Reducción, Reutilización, Reciclaje (3R)" width="200"
+                    style="background-image: url('3r.jpg');">
+                </div>
+                <div class="image-item image-5" alt="Impacto del clima local en Hidalgo" width="200"
+                    style="background-image: url('clima-en-hidalgo-2021.jpg');">
+                </div>
+            </div>
+
+            ---
+
+            <h4>Datos y Estadísticas Clave (<b>Actualizado a 2024</b>) 📊</h4>
+            <p>La ciencia es clara y las cifras son un llamado a la <b>acción inmediata</b>:</p>
+            <ul>
+                <li><b>Temperatura Récord:</b> El año <b>2024 va camino de ser el más cálido jamás registrado</b> a nivel
+                    global, superando el récord anterior de 2023.</li>
+                <li><b>Umbral de 1.5°C:</b> La temperatura media mundial de junio de 2023 a mayo de 2024 se situó en
+                    <b>1.63°C por encima del nivel preindustrial</b> (1850-1900), superando temporalmente el límite de <b>1.5°C</b>
+                    fijado en el <b>Acuerdo de París</b>. Es probable que el calentamiento a largo plazo se sitúe actualmente en torno a 1.3°C.</li>
+                <li><b>Concentración de CO<sub>2</sub>:</b> Las concentraciones atmosféricas de dióxido de carbono
+                    (<b>CO<sub>2</sub></b>) en 2023 <b>batieron todos los récords</b>, y los datos en tiempo real indican que han
+                    seguido aumentando en 2024.</li>
+                <li><b>Calor Oceánico:</b> El <b>océano</b> sigue registrando las <b>temperaturas más cálidas documentadas</b>, no
+                    solo en la superficie sino también en los 2000 metros superiores, ya que almacena cerca del 90%
+                    del exceso de calor generado por el <b>calentamiento global</b>.</li>
+                <li><b>Hielo Marino:</b> En la Antártida, la extensión del <b>hielo marino</b> fue la segunda más baja jamás
+                    observada en los últimos años, con una aceleración en el <b>retroceso de los glaciares</b> a nivel mundial.</li>
+            </ul>
+
+            <blockquote class="pullquote">
+                "La consecución del objetivo de temperatura a largo plazo establecido en virtud del <b>Acuerdo de París</b> aún
+                no es imposible, pero corre grave peligro. Cada fracción de grado de <b>calentamiento</b> importa." &mdash;
+                Organización Meteorológica Mundial (<b>OMM</b>)
+            </blockquote>
+
+            ---
+
+            <h4>La Urgencia de la <b>Mitigación</b> y la <b>Adaptación</b> 🌱</h4>
+            <p>La <b>mitigación</b> se centra en <b>reducir drásticamente las emisiones de GEI</b> (transición a <b>energías
+                renovables</b>, <b>eficiencia energética</b>). La <b>adaptación</b> se enfoca en prepararse para los efectos
+                inevitables (infraestructuras resilientes, cultivos resistentes a sequías).</p>
+            <p>Es indispensable una <b>reducción colectiva del 42% de las emisiones anuales de gases de efecto
+                invernadero para 2030</b> para mantener viva la meta de <b>1.5°C</b>. Tanto los gobiernos, como el
+                sector privado y los ciudadanos, tenemos la responsabilidad de actuar con rapidez y <b>coordinación</b>. La
+                <b>transición verde</b> no es solo un reto, sino una oportunidad para un futuro más justo y sostenible.</p>
+
+            <blockquote class="pullquote">
+                "Somos la primera generación en sentir el impacto del <b>cambio climático</b> y la última que puede hacer algo
+                al respecto." &mdash; Barack Obama
+            </blockquote>
+        </section>
+    </article>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.3/moment.min.js'></script>
+    <script src="./script_secc.js"></script>
+
+    <script src="https://kit.fontawesome.com/bad7f7f5d4.js" crossorigin="anonymous"></script>
+
+    <script>
+        const menuIcon = document.getElementById('menuIcon');
+        const sidebarMenu = document.getElementById('sidebarMenu'); 
+
+        menuIcon.addEventListener('click', () => {
+            sidebarMenu.classList.toggle('visible');
+            menuIcon.classList.toggle('active');
+            
+            // Bloquear/desbloquear el scroll del body
+            if (sidebarMenu.classList.contains('visible')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

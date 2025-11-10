@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="EcoAcción - Conéctate y actúa contra el cambio climático. Calcula tu huella de carbono y participa en eventos de voluntariado ambiental." />
+    <title>Combinación de Slider y Menú Lateral</title>
+    
+    <script src="https://kit.fontawesome.com/bad7f7f5d4.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./style_particioa.css"> 
+</head>
+<body>
+
+    <div class="menu-icon" id="menuIcon">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+
+    <div class="header-container">
+        <nav class="navbar-eco">
+            <div class="logo-container">
+                <img src="logo_pw.png" alt="Logo EcoAcción">
+            </div>
+
+            <div class="brand-name">
+                <h1>Eco<span>Acción</span></h1>
+                <p>¡Tu Impacto Comienza Aquí!</p>
+            </div>
+        </nav>
+        <img src="arbol_enc.gif" alt="Árbol animado" class="header-gif">
+        <div class="animated-roots-wrapper">
+            <div class="root root-1"></div>
+            <div class="root root-2"></div>
+            <div class="root root-3"></div>
+            <div class="root root-4"></div>
+            <div class="root root-5"></div>
+            <div class="root root-6"></div>
+            <div class="root root-7"></div>
+            <div class="root root-8"></div>
+        </div>
+    </div>
+    
+    <div class="sidebar-menu" id="sidebarMenu">
+        <div class="sidebar-menu-content">
+            <ul class="dropdown-list">
+                <li class="animated-item"><a href="../index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li class="animated-item"><a href="S_E_C_C.html"><i class="fas fa-globe-americas"></i> Sobre el cambio climático</a></li>
+                <li class="animated-item"><a href="Acciones_por_el_clima.html"><i class="fas fa-leaf"></i> Acciones para el clima</a></li>
+                <li class="animated-item"><a href="proyectos_campañas.html"><i class="fas fa-project-diagram"></i> Proyectos y campañas</a></li>
+                <li class="animated-item"><a href="particioa.html"><i class="fas fa-users"></i> Participa</a></li>
+                <li class="animated-item"><a href="Recursos.html"><i class="fas fa-book-open"></i> Recursos</a></li>
+                <li class="animated-item"><a href="sobre_nosotros.html"><i class="fas fa-handshake"></i> Sobre nosotros</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <section class="slider-section"> 
+        <div class="head">
+            <h2>Conéctate y Actúa por la Sostenibilidad</h2>
+        </div>
+
+        <div class="slider">
+            <div class="track" id="track">
+                <article class="project-card" active>
+                    <img class="project-card__bg" src="huella.jpg" alt="Fondo Huella de Carbono">
+                    <div class="project-card__content">
+                        <div>
+                            <h3 class="project-card__title">Calcula tu Huella de Carbono</h3>
+                            <p class="project-card__desc">Descubre tu impacto ambiental y aprende a reducirlo con material didáctico.</p>
+                            <a href="huella_carbono.html" target="_blank" class="project-card__btn" style="text-decoration: none;">Ir al Material</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <img class="project-card__bg" src="BOSQUE.jpg" alt="Fondo de evento de voluntariado ambiental">
+                    <div class="project-card__content">
+                        <div>
+                            <h3 class="project-card__title">Eventos y Voluntariado</h3>
+                            <p class="project-card__desc">Visualiza y regístrate en las próximas actividades y oportunidades de voluntariado.</p>
+                            <a href="https://www.greenpeace.org/mexico/participa/voluntariado/" target="_blank" class="project-card__btn" style="text-decoration: none;">Ver Eventos</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card">
+                    <img class="project-card__bg" src="SanFelipeOrizatlan-Hidalgo.jpg" alt="Fondo de organizaciones aliadas">
+                    <div class="project-card__content">
+                        <div>
+                            <h3 class="project-card__title">Organizaciones Aliadas</h3>
+                            <p class="project-card__desc">Descubre organizaciones del estado con las que puedes colaborar o participar.</p>
+                            <a href="Org_Al.html" target="_blank" class="project-card__btn" style="text-decoration: none;">Conocer Aliados</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section">
+        <div class="container-small">
+            <p>¡El momento de actuar es ahora! El futuro de nuestro planeta está en nuestras manos.</p>
+            <p class="quote-author">"Nunca dudes que un pequeño grupo de ciudadanos pensantes y comprometidos puede cambiar el mundo; de hecho, es lo único que lo ha logrado." - Margaret Mead</p>
+        </div>
+    </section>
+    
+    <script src="script_particioa.js"></script>
+
+    <script>
+        // Lógica para abrir/cerrar el menú lateral
+        const menuIcon = document.getElementById('menuIcon');
+        const sidebarMenu = document.getElementById('sidebarMenu'); 
+
+        if (menuIcon && sidebarMenu) {
+            menuIcon.addEventListener('click', () => {
+                sidebarMenu.classList.toggle('visible');
+                menuIcon.classList.toggle('active');
+                
+                // Bloquear/desbloquear el scroll del body
+                if (sidebarMenu.classList.contains('visible')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            });
+        }
+
+        // 💡 LÓGICA AGREGADA PARA EL SLIDER/ACORDEÓN EN MÓVILES (Manejo de Touch)
+        const projectCards = document.querySelectorAll('.project-card');
+
+        projectCards.forEach(card => {
+            card.addEventListener('click', (event) => {
+                // Prevenir que el click del botón active/desactive el acordeón (si el usuario hace click rápido)
+                if (event.target.classList.contains('project-card__btn')) {
+                    return;
+                }
+                
+                // Cierra todas las demás tarjetas
+                projectCards.forEach(otherCard => {
+                    // Usamos .active-mobile para la lógica de toque
+                    if (otherCard !== card && otherCard.classList.contains('active-mobile')) {
+                        otherCard.classList.remove('active-mobile');
+                    }
+                });
+                
+                // Alternar la clase 'active-mobile' en la tarjeta actual
+                card.classList.toggle('active-mobile');
+                
+                // Opcional: Desplazarse a la tarjeta tocada para que se vea bien en la pantalla
+                if (card.classList.contains('active-mobile')) {
+                    setTimeout(() => {
+                        card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }, 400); // Pequeño retraso para que la animación de apertura termine
+                }
+            });
+        });
+    </script>
+</body>
+</html>

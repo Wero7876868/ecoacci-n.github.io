@@ -1,0 +1,688 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css");
+
+/* === VARIABLES DE COLOR Y FUENTE MEJORADAS === */
+:root {
+--color-primary: #1A936F; /* Verde Bosque Intenso (Header/Botones) */
+--color-secondary: #219EBC; /* Azul Océano (Links/Detalles) */
+--color-accent: #E5BB4A; /* Amarillo Tierra/Sol (Acentos) */
+--color-background: #F4F8F7; /* Fondo blanco-grisáceo suave */
+--color-text: #2c3e50; /* Texto azul oscuro */
+--color-light-text: #7f8c8d; /* Texto gris suave */
+--color-border: #dcdcdc; /* Borde ligero */
+--color-card-bg: #ffffff; /* Fondo de tarjeta blanco */
+--color-hover: #eaf1f1; /* Fondo al pasar el ratón */
+--font-heading: 'Montserrat', sans-serif;
+--font-body: 'Open Sans', sans-serif;
+}
+
+/* === ESTILOS BASE Y GENERALES === */
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+
+body {
+font-family: var(--font-body);
+color: var(--color-text);
+background-color: var(--color-background);
+line-height: 1.6;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+}
+
+main {
+flex-grow: 1;
+padding-top: 2.5rem; 
+}
+
+/* Contenedor principal para centrar el contenido */
+.container {
+max-width: 1100px;
+margin: 0 auto;
+padding: 0 1.5rem;
+}
+
+/* === HEADER HERO SECTION (Vistoso y con Degradado) === */
+.hero {
+background-color: var(--color-primary);
+background-image: linear-gradient(135deg, var(--color-primary) 0%, #30b38c 100%);
+color: #fff;
+padding: 4rem 1.5rem;
+text-align: center;
+box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+margin-bottom: 2rem;
+}
+
+.hero h1 {
+font-family: var(--font-heading);
+font-weight: 700;
+font-size: 2.8rem;
+letter-spacing: 1px;
+margin-bottom: 0.5rem;
+text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.hero p {
+font-size: 1.15rem;
+max-width: 700px;
+margin: 0.5rem auto 0;
+opacity: 0.9;
+}
+
+/* === ESTILOS DE SECCIONES (CARDS) MEJORADOS === */
+.card {
+background-color: var(--color-card-bg);
+border-radius: 15px;
+/* Sombra más profesional y sutil */
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.02); 
+border-left: 5px solid var(--color-primary); /* Detalle de color llamativo */
+padding: 3rem;
+margin-bottom: 3rem;
+transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.card:hover {
+transform: translateY(-8px);
+box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.05); 
+}
+
+.card h2 {
+font-family: var(--font-heading);
+font-weight: 700;
+font-size: 2.2rem;
+color: var(--color-primary);
+border-bottom: 3px solid var(--color-accent); /* Separador vistoso */
+padding-bottom: 1rem;
+margin-bottom: 2rem;
+text-align: left; 
+letter-spacing: 0.5px;
+}
+
+.card h2 i {
+margin-right: 10px;
+color: var(--color-accent);
+}
+
+/* === ESTILOS DE ARTÍCULOS Y LISTAS === */
+.recursos-lista ul {
+list-style: none;
+padding-left: 0;
+}
+
+.recursos-lista li {
+margin-bottom: 1rem;
+padding: 0.5rem 0 0.5rem 2.5rem;
+position: relative;
+border-radius: 5px;
+transition: background-color 0.2s ease;
+}
+
+.recursos-lista li:hover {
+background-color: var(--color-hover);
+}
+
+.recursos-lista li a {
+font-weight: 600;
+}
+
+.recursos-lista li::before {
+/* Ícono de flecha Font Awesome */
+content: '\f054'; 
+font-family: "Font Awesome 5 Free";
+font-weight: 900;
+position: absolute;
+left: 0.5rem;
+top: 50%;
+transform: translateY(-50%);
+color: var(--color-accent);
+font-size: 0.8rem;
+}
+
+.recursos-lista article {
+margin-bottom: 2.5rem;
+padding: 1.5rem;
+border: 1px solid var(--color-border);
+border-radius: 10px;
+background-color: #fcfcfc;
+transition: box-shadow 0.3s ease;
+}
+
+.recursos-lista article:hover {
+box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.recursos-lista article h3 {
+font-size: 1.5rem;
+color: var(--color-text);
+margin-bottom: 0.6rem;
+text-align: left;
+font-weight: 600;
+}
+
+/* === ENLACES Y BOTONES (Modernos) === */
+a {
+color: var(--color-secondary);
+text-decoration: none;
+transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+a:hover {
+color: var(--color-primary);
+text-decoration: underline;
+}
+
+.button {
+display: inline-block;
+background-color: var(--color-primary);
+color: #fff;
+padding: 0.8rem 1.8rem;
+border-radius: 50px; /* Botón en forma de píldora */
+text-decoration: none;
+font-weight: 700;
+text-transform: uppercase;
+font-size: 0.9rem;
+letter-spacing: 0.5px;
+transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+box-shadow: 0 6px 15px rgba(26, 147, 111, 0.4); /* Sombra temática */
+}
+
+.button:hover {
+background-color: #156d53; 
+transform: translateY(-3px);
+text-decoration: none;
+box-shadow: 0 8px 20px rgba(26, 147, 111, 0.6);
+}
+
+/* === GALERÍA DE IMÁGENES (Grid Moderno) === */
+.gallery-description {
+text-align: center;
+color: var(--color-light-text);
+margin-bottom: 2rem;
+font-style: italic;
+}
+
+.wrapper {
+/* Grid simple y responsivo */
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+gap: 15px;
+padding: 10px;
+border-radius: 10px;
+background-color: var(--color-hover);
+}
+
+.group {
+display: contents; 
+}
+
+.wrapper div {
+position: relative;
+overflow: hidden;
+border-radius: 8px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+transition: all 0.3s ease;
+cursor: pointer;
+aspect-ratio: 1 / 1; 
+}
+
+.wrapper div:hover {
+transform: scale(1.05);
+box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+z-index: 10;
+}
+
+.wrapper img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.4s ease;
+}
+
+.wrapper div:hover img {
+transform: scale(1.1);
+filter: brightness(0.8); 
+}
+
+h3 {
+font-family: var(--font-heading);
+color: var(--color-secondary);
+margin-top: 3rem;
+margin-bottom: 1rem;
+font-size: 1.7rem;
+text-align: left; 
+font-weight: 600;
+}
+
+h3 i {
+margin-right: 10px;
+}
+
+/* === PIE DE PÁGINA PROFESIONAL === */
+footer {
+text-align: center;
+padding: 2rem 1rem;
+margin-top: 4rem;
+background-color: #34495e; 
+color: #ecf0f1;
+font-size: 0.9rem;
+border-top: 5px solid var(--color-primary);
+}
+
+/* === ESTILOS VARIOS === */
+hr.divider {
+border: none;
+border-top: 1px dashed var(--color-border);
+margin: 4rem auto;
+width: 80%;
+max-width: 600px;
+}
+
+/* Nuevo divisor más pequeño para separar YouTube de los Reels */
+hr.divider-mini {
+border: none;
+border-top: 1px solid rgba(0, 0, 0, 0.1);
+margin: 2rem auto;
+width: 50%;
+max-width: 300px;
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+.hero {
+padding: 3rem 1rem;
+}
+.hero h1 {
+font-size: 2rem;
+}
+.card {
+padding: 1.5rem;
+}
+.card h2 {
+font-size: 1.8rem;
+}
+.button {
+display: block;
+text-align: center;
+margin-top: 1rem;
+}
+}
+
+
+/* ============================================== */
+/* === ESTILOS NUEVOS PARA REELS DE INSTAGRAM (MODIFICADOS Y MEJORADOS) === */
+/* ============================================== */
+
+.reels-grid {
+display: flex; 
+justify-content: center; 
+gap: 30px; 
+flex-wrap: wrap;
+padding: 20px 0;
+max-width: 750px; 
+margin: 0 auto; 
+}
+
+.reel-item-link {
+text-decoration: none;
+display: block; 
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+flex-basis: 200px; 
+max-width: 200px;
+}
+
+.reel-item-link:hover {
+text-decoration: none;
+transform: translateY(-5px);
+box-shadow: 0 10px 25px rgba(0,0,0,0.25); /* Sombra más pronunciada al hacer hover */
+}
+
+.reel-item {
+width: 100%; 
+height: 350px; 
+background-color: var(--color-card-bg);
+border-radius: 15px; 
+overflow: hidden;
+position: relative;
+box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+border: 3px solid transparent; 
+transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.reel-item-link:hover .reel-item {
+border-color: var(--color-secondary); 
+background: var(--color-hover); /* Pequeño cambio de fondo */
+}
+
+.reel-thumbnail {
+width: 100%;
+height: 250px; 
+object-fit: cover;
+display: block;
+transition: filter 0.3s ease;
+}
+
+.reel-item-link:hover .reel-thumbnail {
+filter: brightness(0.9); /* Oscurece ligeramente la imagen al pasar el ratón */
+}
+
+.play-button {
+position: absolute;
+top: 125px; 
+left: 50%;
+transform: translate(-50%, -50%) scale(1); /* Base de escala */
+background: rgba(26, 147, 111, 0.9); /* Verde con más opacidad */
+border-radius: 50%;
+width: 60px;
+height: 60px;
+display: flex;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.reel-item-link:hover .play-button {
+background: var(--color-accent); /* Color más llamativo al pasar el ratón */
+transform: translate(-50%, -50%) scale(1.1); /* Ligero crecimiento */
+}
+
+.play-button span {
+color: white;
+font-size: 1.8em;
+line-height: 1;
+transform: translateX(3px); 
+}
+
+.reel-title {
+text-align: center;
+font-size: 1em;
+font-weight: 700; /* Más audaz */
+padding: 10px;
+margin: 0;
+flex-grow: 1;
+display: flex;
+align-items: center;
+justify-content: center;
+background-color: var(--color-hover); 
+/* Degradado de texto para un efecto moderno */
+background-image: linear-gradient(45deg, var(--color-secondary), var(--color-primary));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+color: var(--color-text); /* Fallback */
+transition: all 0.3s ease;
+}
+
+.reel-item-link:hover .reel-title {
+background-image: linear-gradient(45deg, var(--color-accent), var(--color-secondary)); /* Cambio de degradado al pasar el ratón */
+}
+
+/* Media Query para hacer los reels más grandes en dispositivos pequeños */
+@media (max-width: 500px) {
+.reels-grid {
+max-width: 100%; 
+}
+.reel-item-link {
+flex-basis: 90%; 
+max-width: 300px;
+}
+.reel-item {
+height: auto; 
+}
+.reel-thumbnail {
+height: 300px;
+}
+.play-button {
+top: 150px;
+}
+}
+/* ===================================== */
+/* 1. VARIABLES GLOBALES Y RESET */
+/* ===================================== */
+:root {
+    /* Variables del Header/Menú */
+    --color-naranja-base: #FF8C00; 
+    --color-naranja-oscuro: #E67E22;
+    --color-texto-claro: #FFFFFF;
+    --color-amarillo-cta: #FFF000;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    /* Nota: 'Montserrat Alternates' no está enlazada, la he cambiado a 'Poppins' para que coincida con el resto de fuentes enlazadas */
+    font-family: 'Poppins', sans-serif; 
+}
+
+/* ===================================== */
+/* 2. ESTILOS BASE Y AJUSTE DEL BODY */
+/* ===================================== */
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    overflow-x: hidden;
+    
+    /* Compensar la altura del header fijo (90px) */
+    padding-top: 90px; 
+}
+
+/* ===================================== */
+/* 3. ESTILOS DEL ENCABEZADO Y NAVBAR */
+/* ===================================== */
+
+/* --- ÍCONO DE MENÚ (HAMBURGUESA) --- */
+.menu-icon {
+    cursor: pointer;
+    padding: 5px;
+    position: fixed; 
+    top: 25px; 
+    left: 30px; 
+    z-index: 1000;
+}
+.menu-icon .bar {
+    width: 30px; height: 4px; background-color: var(--color-texto-claro); margin: 6px 0;
+    display: block; border-radius: 2px; transition: all 0.3s ease;
+}
+.menu-icon.active .bar:nth-child(2) { opacity: 0; }
+.menu-icon.active .bar:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.menu-icon.active .bar:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+.header-container {
+    /* Asegúrate de tener 'fondo_encabezado.jpeg' */
+    background: url('fondo_encabezado.jpeg') center/cover;
+    padding: 0;
+    width: 100%;
+    height: 90px; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    z-index: 100;
+    overflow: hidden; 
+}
+.navbar-eco {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    margin: 0;
+    width: 100%;
+    padding: 15px 30px;
+    padding-left: 90px; /* Espacio para el icono de menú */
+    height: 100%; 
+    
+    /* Glassmorphism */
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    position: relative; 
+    z-index: 10; 
+}
+.logo-container img {
+    height: 50px;
+    width: auto;
+    margin-right: 15px;
+}
+.brand-name {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+.brand-name h1 {
+    font-size: 2.5em; 
+    font-weight: 800;
+    margin: 0;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    font-family: 'Poppins', sans-serif;
+}
+.brand-name h1 span {
+    color: var(--color-amarillo-cta);
+}
+.brand-name p {
+    font-size: 0.9em;
+    color: #fff;
+    margin-top: 5px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* --- GIF y Raíces (Animaciones) --- */
+.header-gif {
+    position: absolute;
+    top: 0px; 
+    right: 10px; 
+    height: 90px; 
+    width: auto; 
+    z-index: 102; 
+    pointer-events: none; 
+    transform: scale(1); 
+    transform-origin: right center;
+    transition: transform 0.3s ease;
+}
+.animated-roots-wrapper {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 5; pointer-events: none; perspective: 1000px;
+    transform: scale(1);
+    transform-origin: left center;
+    transition: transform 0.3s ease;
+}
+.root {
+    position: absolute; background-color: rgba(100, 70, 40, 0.6); border-radius: 50%;
+    height: 4px; transform-origin: left center; opacity: 0;
+    animation: growRoot 15s ease-in-out infinite forwards;
+}
+@keyframes growRoot {
+    0% { transform: scaleX(0); opacity: 0; } 10% { opacity: 1; }
+    80% { transform: scaleX(1); opacity: 0.8; } 100% { transform: scaleX(1); opacity: 0; }
+}
+/* Posiciones y delays de las raíces (para reproducir el efecto visual) */
+.root-1 { top: 20%; left: 0; width: 150px; transform: rotate(10deg) scaleX(0); animation-delay: 0s; }
+.root-2 { top: 35%; left: 0; width: 180px; transform: rotate(-5deg) scaleX(0); animation-delay: 2s; }
+.root-3 { top: 50%; left: 0; width: 120px; transform: rotate(20deg) scaleX(0); animation-delay: 4s; }
+.root-4 { top: 65%; left: 0; width: 200px; transform: rotate(-15deg) scaleX(0); animation-delay: 6s; }
+.root-5 { top: 25%; right: 0; width: 170px; transform-origin: right center; transform: rotate(-10deg) scaleX(0); animation-delay: 1s; background-color: rgba(80, 50, 20, 0.6); }
+.root-6 { top: 40%; right: 0; width: 130px; transform-origin: right center; transform: rotate(5deg) scaleX(0); animation-delay: 3s; background-color: rgba(90, 60, 30, 0.6); }
+.root-7 { top: 55%; right: 0; width: 190px; transform-origin: right center; transform: rotate(-20deg) scaleX(0); animation-delay: 5s; background-color: rgba(70, 40, 10, 0.6); }
+.root-8 { top: 70%; right: 0; width: 160px; transform-origin: right center; transform: rotate(15deg) scaleX(0); animation-delay: 7s; background-color: rgba(110, 80, 50, 0.6); }
+.root::before, .root::after {
+    content: ''; position: absolute; background-color: inherit; border-radius: 50%;
+    height: 3px; transform-origin: left center; opacity: 0;
+    animation: growBranch 15s ease-in-out infinite forwards;
+}
+.root::before { width: 60%; top: -5px; left: 30%; transform: rotate(45deg) scaleX(0); animation-delay: 0.5s; }
+.root::after { width: 40%; bottom: -5px; left: 50%; transform: rotate(-30deg) scaleX(0); animation-delay: 1.5s; }
+@keyframes growBranch {
+    0% { transform: scaleX(0); opacity: 0; } 20% { opacity: 1; }
+    90% { transform: scaleX(1); opacity: 0.7; } 100% { transform: scaleX(1); opacity: 0; }
+}
+
+
+/* ===================================== */
+/* 4. ESTILOS DEL MENÚ LATERAL (SIDEBAR) */
+/* ===================================== */
+.sidebar-menu {
+    position: fixed; top: 0; left: 0; height: 100vh; 
+    width: 300px;
+    background-color: var(--color-naranja-base); 
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3); z-index: 999; 
+    overflow-y: auto; 
+    transform: translateX(-100%); 
+    transition: transform 0.4s ease-out; 
+}
+.sidebar-menu.visible { 
+    transform: translateX(0); 
+}
+.sidebar-menu-content { 
+    padding-top: 100px; 
+} 
+
+.dropdown-list { 
+    list-style: none; padding: 0; margin: 0; 
+}
+.dropdown-list li a {
+    display: flex; align-items: center; padding: 15px 30px; text-decoration: none;
+    color: var(--color-texto-claro); font-size: 1.1em; font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+.dropdown-list li a:hover { 
+    background-color: var(--color-naranja-oscuro); 
+}
+.dropdown-list li a i { 
+    margin-right: 15px; font-size: 1.2em; 
+}
+
+/* Animación escalonada */
+.animated-item {
+    transform: translateX(-20px); opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+.sidebar-menu.visible .animated-item {
+    transform: translateX(0); opacity: 1;
+}
+/* Retrasos para el efecto escalonado */
+.sidebar-menu.visible .animated-item:nth-child(1) { transition-delay: 0.1s; }
+.sidebar-menu.visible .animated-item:nth-child(2) { transition-delay: 0.2s; }
+.sidebar-menu.visible .animated-item:nth-child(3) { transition-delay: 0.3s; }
+.sidebar-menu.visible .animated-item:nth-child(4) { transition-delay: 0.4s; }
+.sidebar-menu.visible .animated-item:nth-child(5) { transition-delay: 0.5s; }
+.sidebar-menu.visible .animated-item:nth-child(6) { transition-delay: 0.6s; }
+.sidebar-menu.visible .animated-item:nth-child(7) { transition-delay: 0.7s; }
+
+
+/* ===================================== */
+/* 6. MEDIA QUERIES (ADAPTADAS) */
+/* ===================================== */
+@media screen and (max-width: 768px) {
+    /* AJUSTE GENERAL */
+    .header-container { height: 80px; } 
+    body { padding-top: 80px; } 
+
+    /* AJUSTE DE HEADER */
+    .navbar-eco { padding: 10px 15px; padding-left: 70px; }
+    .logo-container img { height: 40px; margin-right: 10px; }
+    .brand-name h1 { font-size: 1.8em; }
+    .brand-name p { font-size: 0.7em; margin-top: 2px; }
+    .menu-icon { top: 20px; left: 20px; }
+    
+    .header-gif { height: 80px; transform: scale(0.7); } 
+    .animated-roots-wrapper { transform: scale(0.7); } 
+    
+    /* AJUSTE DE MENÚ LATERAL */
+    .sidebar-menu { width: 100%; height: 100vh; }
+    .sidebar-menu-content { padding-top: 80px; }
+    .dropdown-list li a { font-size: 1em; padding: 12px 20px; }
+}
+
+@media screen and (max-width: 425px) {
+    /* AJUSTE DE HEADER */
+    .header-gif { transform: scale(0.6); } 
+    .animated-roots-wrapper { transform: scale(0.5); }
+}

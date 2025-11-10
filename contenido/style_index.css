@@ -1,0 +1,439 @@
+/* Variables y Reset */
+:root {
+    --color-naranja-base: #FF8C00; 
+    --color-naranja-oscuro: #E67E22;
+    --color-texto-claro: #FFFFFF;
+    --color-verde-marca: #3ABF9E;
+    --color-amarillo-cta: #FFF000;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Poppins', sans-serif; 
+    background-color: #f4f4f4;
+}
+
+/* ------------------------------------- */
+/* ESTILOS DEL ENCABEZADO Y NAVBAR */
+/* ------------------------------------- */
+
+/* --- ÍCONO DE MENÚ (HAMBURGUESA) --- */
+.menu-icon {
+    cursor: pointer;
+    padding: 5px;
+    position: fixed; 
+    top: 25px; 
+    left: 30px; 
+    z-index: 1000;
+}
+.menu-icon .bar {
+    width: 30px; height: 4px; background-color: var(--color-texto-claro); margin: 6px 0;
+    display: block; border-radius: 2px; transition: all 0.3s ease;
+}
+.menu-icon.active .bar:nth-child(2) { opacity: 0; }
+.menu-icon.active .bar:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.menu-icon.active .bar:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+
+.header-container {
+    background: url('fondo_encabezado.jpeg');
+    padding: 0;
+    width: 100%;
+    height: 90px; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    overflow: hidden; 
+}
+.navbar-eco {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; 
+    margin: 0;
+    width: 100%;
+    padding: 15px 30px;
+    padding-left: 90px;
+    height: 100%; 
+    
+    
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(8px); 
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    position: relative; 
+    z-index: 10; 
+}
+.logo-container img {
+    height: 50px;
+    width: auto;
+    margin-right: 15px;
+}
+.brand-name {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+.brand-name h1 {
+    font-size: 2.5em; 
+    font-weight: 800;
+    margin: 0;
+    color: #FFFFFF;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    font-family: 'Poppins', sans-serif;
+}
+.brand-name h1 span {
+    color: var(--color-amarillo-cta);
+}
+.brand-name p {
+    font-size: 0.9em;
+    color: #fff;
+    margin-top: 5px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* --- GIF DEL ENCABEZADO --- */
+.header-gif {
+    position: absolute;
+    top: 0px; 
+    right: 10px; 
+    height: 90px; 
+    width: auto; 
+    z-index: 102; 
+    pointer-events: none; 
+}
+
+/* --- ANIMACIÓN DE RAÍCES SIN IMAGEN --- */
+.animated-roots-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5; /* Por debajo de la navbar y el GIF */
+    pointer-events: none; /* No bloquea interacciones */
+    perspective: 1000px; /* Para efectos 3D si se quieren más adelante */
+}
+
+/* Estilo base para cada "raíz" */
+.root {
+    position: absolute;
+    background-color: rgba(100, 70, 40, 0.6); /* Color tierra/madera semitransparente */
+    border-radius: 50%; /* Para extremos más suaves, simula la punta de la raíz */
+    height: 4px; /* Grosor inicial de la raíz */
+    transform-origin: left center; /* Las raíces crecen desde la izquierda */
+    opacity: 0;
+    animation: growRoot 15s ease-in-out infinite forwards; /* Animación de crecimiento */
+}
+
+/* Definición de la animación de crecimiento */
+@keyframes growRoot {
+    0% {
+        transform: scaleX(0); /* Empieza sin longitud */
+        opacity: 0;
+    }
+    10% {
+        opacity: 1; /* Aparece */
+    }
+    80% {
+        transform: scaleX(1); /* Crece a su longitud completa */
+        opacity: 0.8;
+    }
+    100% {
+        transform: scaleX(1);
+        opacity: 0; /* Desaparece al final del ciclo */
+    }
+}
+
+/* Posicionamiento y estilos específicos para cada raíz */
+.root-1 {
+    top: 20%; left: 0; width: 150px; /* Longitud máxima */
+    transform: rotate(10deg) scaleX(0); 
+    animation-delay: 0s;
+}
+.root-2 {
+    top: 35%; left: 0; width: 180px; 
+    transform: rotate(-5deg) scaleX(0);
+    animation-delay: 2s;
+}
+.root-3 {
+    top: 50%; left: 0; width: 120px; 
+    transform: rotate(20deg) scaleX(0);
+    animation-delay: 4s;
+}
+.root-4 {
+    top: 65%; left: 0; width: 200px; 
+    transform: rotate(-15deg) scaleX(0);
+    animation-delay: 6s;
+}
+.root-5 {
+    top: 25%; right: 0; width: 170px; /* Raíz que crece desde la derecha */
+    transform-origin: right center; /* Origen de la transformación desde la derecha */
+    transform: rotate(-10deg) scaleX(0); 
+    animation-delay: 1s;
+    background-color: rgba(80, 50, 20, 0.6); /* Color ligeramente diferente */
+}
+.root-6 {
+    top: 40%; right: 0; width: 130px; 
+    transform-origin: right center;
+    transform: rotate(5deg) scaleX(0);
+    animation-delay: 3s;
+    background-color: rgba(90, 60, 30, 0.6);
+}
+.root-7 {
+    top: 55%; right: 0; width: 190px; 
+    transform-origin: right center;
+    transform: rotate(-20deg) scaleX(0);
+    animation-delay: 5s;
+    background-color: rgba(70, 40, 10, 0.6);
+}
+.root-8 {
+    top: 70%; right: 0; width: 160px; 
+    transform-origin: right center;
+    transform: rotate(15deg) scaleX(0);
+    animation-delay: 7s;
+    background-color: rgba(110, 80, 50, 0.6);
+}
+
+/* Ajustes para simular el "entrelazado" o ramificación */
+/* Podemos usar pseudo-elementos para añadir "ramas" a las raíces principales */
+.root::before, .root::after {
+    content: '';
+    position: absolute;
+    background-color: inherit; /* Hereda el color de la raíz principal */
+    border-radius: 50%;
+    height: 3px; /* Más delgado que la raíz principal */
+    transform-origin: left center;
+    opacity: 0;
+    animation: growBranch 15s ease-in-out infinite forwards;
+}
+
+.root::before {
+    width: 60%; /* Longitud de la rama */
+    top: -5px; /* Arriba de la raíz principal */
+    left: 30%; /* Posición a lo largo de la raíz */
+    transform: rotate(45deg) scaleX(0);
+    animation-delay: 0.5s; /* Retraso para que crezca después de la principal */
+}
+
+.root::after {
+    width: 40%;
+    bottom: -5px; /* Abajo de la raíz principal */
+    left: 50%;
+    transform: rotate(-30deg) scaleX(0);
+    animation-delay: 1.5s;
+}
+
+/* Asegurar que las ramas crezcan junto con las raíces principales */
+@keyframes growBranch {
+    0% {
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    90% {
+        transform: scaleX(1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scaleX(1);
+        opacity: 0;
+    }
+}
+
+
+/* ------------------------------------- */
+/* ESTILOS DEL MENÚ LATERAL (SIDEBAR) */
+/* ------------------------------------- */
+.sidebar-menu {
+    position: fixed; top: 0; left: 0; height: 100%; width: 300px;
+    background-color: var(--color-naranja-base); 
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3); z-index: 999; 
+    overflow-y: auto; 
+    transform: translateX(-100%); 
+    transition: transform 0.4s ease-out; 
+}
+.sidebar-menu.visible { 
+    transform: translateX(0); 
+}
+.sidebar-menu-content { 
+    padding-top: 100px; 
+} 
+
+.dropdown-list { 
+    list-style: none; padding: 0; margin: 0; 
+}
+.dropdown-list li a {
+    display: flex; align-items: center; padding: 15px 30px; text-decoration: none;
+    color: var(--color-texto-claro); font-size: 1.1em; font-weight: 600;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+.dropdown-list li a:hover { 
+    background-color: var(--color-naranja-oscuro); 
+}
+.dropdown-list li a i { 
+    margin-right: 15px; font-size: 1.2em; 
+}
+
+/* Animación escalonada */
+.animated-item {
+    transform: translateX(-20px); 
+    opacity: 0;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+.sidebar-menu.visible .animated-item {
+    transform: translateX(0);
+    opacity: 1;
+}
+.sidebar-menu.visible .animated-item:nth-child(1) { transition-delay: 0.1s; }
+.sidebar-menu.visible .animated-item:nth-child(2) { transition-delay: 0.2s; }
+.sidebar-menu.visible .animated-item:nth-child(3) { transition-delay: 0.3s; }
+.sidebar-menu.visible .animated-item:nth-child(4) { transition-delay: 0.4s; }
+.sidebar-menu.visible .animated-item:nth-child(5) { transition-delay: 0.5s; }
+.sidebar-menu.visible .animated-item:nth-child(6) { transition-delay: 0.6s; }
+.sidebar-menu.visible .animated-item:nth-child(7) { transition-delay: 0.7s; }
+
+
+/* ------------------------------------- */
+/* ESTILOS DEL WRAPPER Y CAJAS (EXISTENTES) */
+/* ------------------------------------- */
+
+.wrapper{
+    width:100%;
+    height:100%;
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background-image: url("https://cienciaybiologia.com/wp-content/uploads/2021/11/ecosistemas-que-son-2.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; 
+    padding-top: 100px;
+}
+.wrapper .box{
+    position: relative;
+    width:280px;
+    height:400px;
+    box-shadow: 20px 20px 50px rgba(0,0,0,0.5);
+    border-radius:15px;
+    margin:30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top:1px solid rgba(255,255,255,0.5);
+    border-left:1px solid rgba(255,255,255,0.5);
+    backdrop-filter: blur(5px);
+    transform-style: preserve-3d;
+    transform: perspective(800px) 
+}
+h2{
+    color:#f5f5f5;
+    font-size:2.5rem;
+    text-align: center;
+    font-family: 'Acme', sans-serif;
+}
+p{
+    color:#ccc;
+    margin:20px 10px;
+    font-family: 'Fira Code', monospace;
+}
+
+/* ------------------------------------- */
+/* 📱 MEDIA QUERIES PARA ADAPTAR A TELÉFONOS */
+/* ------------------------------------- */
+@media (max-width: 768px) {
+    
+    /* --- ENCABEZADO Y NAVBAR --- */
+    .header-container {
+        height: 80px; /* Reducir la altura del encabezado */
+    }
+
+    .navbar-eco {
+        padding: 10px 15px; /* Reducir el padding general */
+        padding-left: 70px; /* Ajustar padding para dejar espacio al icono de menú */
+    }
+    
+    .logo-container img {
+        height: 40px; /* Reducir el tamaño del logo */
+        margin-right: 10px;
+    }
+    
+    .brand-name h1 {
+        font-size: 1.8em; /* Reducir tamaño del título */
+    }
+    
+    .brand-name p {
+        font-size: 0.7em; /* Reducir tamaño del subtítulo */
+        margin-top: 2px;
+    }
+    
+    .menu-icon {
+        top: 20px; /* Ajustar posición del icono de menú */
+        left: 20px;
+    }
+
+    /* Ocultar el GIF del encabezado en móviles */
+    .header-gif {
+        display: none;
+    }
+
+    /* Ocultar la animación de raíces en móviles para mejorar rendimiento */
+    .animated-roots-wrapper {
+        display: none;
+    }
+
+    /* --- MENÚ LATERAL (SIDEBAR) --- */
+    .sidebar-menu {
+        width: 100%; /* El menú lateral ocupa todo el ancho de la pantalla en móviles */
+    }
+    
+    .sidebar-menu-content { 
+        padding-top: 80px; /* Ajustar padding superior */
+    } 
+
+    .dropdown-list li a {
+        font-size: 1em; /* Ajustar tamaño de fuente */
+        padding: 12px 20px; /* Ajustar padding de los ítems */
+    }
+    
+    /* --- CONTENIDO PRINCIPAL (WRAPPER Y BOXES) --- */
+    .wrapper {
+        padding-top: 80px; /* Ajustar el padding superior para compensar la nueva altura del encabezado */
+        flex-direction: column; /* Apilar las cajas verticalmente */
+        background-attachment: scroll; /* Para evitar problemas con el 'fixed' en móviles */
+        min-height: auto; /* Dejar que el contenido defina la altura */
+        padding-bottom: 30px; /* Añadir padding inferior */
+    }
+
+    .wrapper .box {
+        width: 90%; /* Las cajas ocupan casi todo el ancho disponible */
+        height: auto; /* La altura se ajusta al contenido */
+        min-height: 250px; /* Altura mínima para asegurar visibilidad */
+        margin: 20px auto; /* Centrar y añadir margen vertical */
+        /* Reducir sombras y desenfoque si es necesario */
+        box-shadow: 10px 10px 30px rgba(0,0,0,0.4);
+        backdrop-filter: blur(3px); 
+    }
+    
+    h2 {
+        font-size: 1.5rem; /* Reducir tamaño de los títulos de las cajas */
+        padding-top: 15px;
+    }
+    
+    p {
+        font-size: 0.9rem; /* Reducir tamaño del texto de las cajas */
+        margin: 10px;
+    }
+
+}

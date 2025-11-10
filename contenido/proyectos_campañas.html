@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoAcción - Campañas y Proyectos Ambientales en Hidalgo</title>
+    
+    <script src="https://kit.fontawesome.com/bad7f7f5d4.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&family=Poppins:wght@400;600;800&family=Montserrat+Alternates:wght@400;600;700&display=swap" rel="stylesheet">
+
+
+    <style>
+        /* ===================================== */
+        /* 1. VARIABLES GLOBALES Y RESET */
+        /* ===================================== */
+        :root {
+            --color-neutral-900: #f0f0f0;
+            color-scheme: light dark;
+
+            /* Variables del Header/Menú */
+            --color-naranja-base: #FF8C00; 
+            --color-naranja-oscuro: #E67E22;
+            --color-texto-claro: #FFFFFF;
+            --color-verde-marca: #2A9D8F; /* Color principal para títulos y CTA */
+            --color-verde-oscuro: #264653; /* Color oscuro para contraste */
+            --color-amarillo-cta: #FFF000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ===================================== */
+        /* 2. ESTILOS BASE Y AJUSTE DEL BODY */
+        /* ===================================== */
+        body {
+            font-family: 'Montserrat Alternates', sans-serif;
+            background-color: #f7f7f7;
+            color: #333;
+            overflow-x: hidden;
+            line-height: 1.6;
+            padding-top: 90px; 
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ===================================== */
+        /* 3. ESTILOS DEL ENCABEZADO Y NAVBAR (MANTENIDO) */
+        /* ===================================== */
+
+        .menu-icon {
+            cursor: pointer; padding: 5px; position: fixed; top: 25px; left: 30px; z-index: 1000;
+        }
+        .menu-icon .bar {
+            width: 30px; height: 4px; background-color: var(--color-texto-claro); margin: 6px 0;
+            display: block; border-radius: 2px; transition: all 0.3s ease;
+        }
+        .menu-icon.active .bar:nth-child(2) { opacity: 0; }
+        .menu-icon.active .bar:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+        .menu-icon.active .bar:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+        .header-container {
+            background: url('fondo_encabezado.jpeg') center/cover;
+            padding: 0; width: 100%; height: 90px; position: fixed; top: 0; left: 0;
+            z-index: 100; overflow: hidden; 
+        }
+        .navbar-eco {
+            display: flex; align-items: center; justify-content: flex-start; margin: 0;
+            width: 100%; padding: 15px 30px; padding-left: 90px; height: 100%; 
+            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(8px); 
+            -webkit-backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); position: relative; z-index: 10; 
+        }
+        .logo-container img {
+            height: 50px; width: auto; margin-right: 15px;
+        }
+        .brand-name {
+            display: flex; flex-direction: column; line-height: 1;
+        }
+        .brand-name h1 {
+            font-size: 2.5em; font-weight: 800; margin: 0; color: #FFFFFF;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); font-family: 'Poppins', sans-serif;
+        }
+        .brand-name h1 span {
+            color: var(--color-amarillo-cta);
+        }
+        .brand-name p {
+            font-size: 0.9em; color: #fff; margin-top: 5px; font-weight: 600;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .header-gif {
+            position: absolute; top: 0px; right: 10px; height: 90px; 
+            width: auto; z-index: 102; pointer-events: none; 
+            transform: scale(1); transform-origin: right center;
+            transition: transform 0.3s ease;
+        }
+        .animated-roots-wrapper {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 5; pointer-events: none; perspective: 1000px;
+            transform: scale(1); transform-origin: left center;
+            transition: transform 0.3s ease;
+        }
+        .root {
+            position: absolute; background-color: rgba(100, 70, 40, 0.6); 
+            border-radius: 50%; height: 4px; transform-origin: left center; 
+            opacity: 0; animation: growRoot 15s ease-in-out infinite forwards;
+        }
+        @keyframes growRoot {
+            0% { transform: scaleX(0); opacity: 0; } 10% { opacity: 1; }
+            80% { transform: scaleX(1); opacity: 0.8; } 100% { transform: scaleX(1); opacity: 0; }
+        }
+        
+        /* ... Estilos del menú lateral (sidebar) ... (Mantenidos) */
+        .sidebar-menu {
+            position: fixed; top: 0; left: 0; height: 100vh; width: 300px;
+            background-color: var(--color-naranja-base); box-shadow: 4px 0 10px rgba(0, 0, 0, 0.3); z-index: 999; 
+            overflow-y: auto; transform: translateX(-100%); transition: transform 0.4s ease-out; 
+        }
+        .sidebar-menu.visible { transform: translateX(0); }
+        .sidebar-menu-content { padding-top: 100px; } 
+        .dropdown-list { list-style: none; padding: 0; margin: 0; }
+        .dropdown-list li a {
+            display: flex; align-items: center; padding: 15px 30px; text-decoration: none;
+            color: var(--color-texto-claro); font-size: 1.1em; font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2); transition: background-color 0.3s ease, color 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+        .dropdown-list li a:hover { background-color: var(--color-naranja-oscuro); }
+        .dropdown-list li a i { margin-right: 15px; font-size: 1.2em; }
+        .animated-item {
+            transform: translateX(-20px); opacity: 0;
+            transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+        }
+        .sidebar-menu.visible .animated-item {
+            transform: translateX(0); opacity: 1;
+        }
+        .sidebar-menu.visible .animated-item:nth-child(1) { transition-delay: 0.1s; }
+        .sidebar-menu.visible .animated-item:nth-child(2) { transition-delay: 0.2s; }
+        .sidebar-menu.visible .animated-item:nth-child(3) { transition-delay: 0.3s; }
+        .sidebar-menu.visible .animated-item:nth-child(4) { transition-delay: 0.4s; }
+        .sidebar-menu.visible .animated-item:nth-child(5) { transition-delay: 0.5s; }
+        .sidebar-menu.visible .animated-item:nth-child(6) { transition-delay: 0.6s; }
+        .sidebar-menu.visible .animated-item:nth-child(7) { transition-delay: 0.7s; }
+
+
+        /* ===================================== */
+        /* 5. ESTILOS DE LA PÁGINA (CONTENIDO) */
+        /* ===================================== */
+        
+        #main-content {
+            padding-top: 50px; 
+            min-height: 100vh;
+            padding-bottom: 50px;
+        }
+        
+        /* --- ESTILOS DE TÍTULOS --- */
+        h2 {
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            color: var(--color-verde-oscuro);
+            font-size: 2.5em;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        h3.section-subtitle {
+            text-align: center;
+            margin: 40px auto 30px auto;
+            color: var(--color-naranja-oscuro);
+            font-size: 1.8em;
+            font-weight: 600;
+            border-bottom: 3px solid var(--color-verde-marca);
+            display: inline-block;
+            padding-bottom: 5px;
+            max-width: 90%;
+        }
+
+
+        .container-proyectos {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- ESTILOS MEJORADOS DE TARJETA --- */
+        .proyecto-card {
+            background-color: #ffffff;
+            border: 2px solid var(--color-verde-marca); /* Borde de color de marca */
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Sombra más fuerte */
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 0.5s forwards ease-out; 
+        }
+
+        /* Animación de aparición escalonada de las tarjetas (Mantenida) */
+        .proyecto-card:nth-child(1) { animation-delay: 0.1s; }
+        .proyecto-card:nth-child(2) { animation-delay: 0.2s; }
+        .proyecto-card:nth-child(3) { animation-delay: 0.3s; }
+        .proyecto-card:nth-child(4) { animation-delay: 0.4s; }
+        .proyecto-card:nth-child(5) { animation-delay: 0.5s; }
+        .proyecto-card:nth-child(6) { animation-delay: 0.6s; }
+        .proyecto-card:nth-child(7) { animation-delay: 0.7s; } 
+        .proyecto-card:nth-child(8) { animation-delay: 0.8s; } 
+
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .proyecto-card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            background-color: #f0fff0; /* Fondo sutil al pasar el mouse */
+        }
+
+        .proyecto-info {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .proyecto-card h3 {
+            margin-top: 0;
+            font-size: 1.7em;
+            border-bottom: 3px solid var(--color-naranja-base); /* Color de marca en el separador */
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+            color: var(--color-verde-oscuro); /* Color más oscuro para mejor lectura */
+            display: flex;
+            align-items: center;
+        }
+
+        .proyecto-card h3 i {
+            margin-right: 12px;
+            color: var(--color-naranja-base); /* Ícono en color naranja */
+            font-size: 1.3em;
+        }
+
+        .proyecto-card p {
+            line-height: 1.7;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            color: #555;
+        }
+
+        /* --- ESTILO DE BOTÓN CTA --- */
+        .cta-button {
+            background-color: var(--color-verde-marca);
+            color: var(--color-texto-claro) !important;
+            text-align: center;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px; /* Mayor separación */
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none; /* Asegura que no haya subrayado */
+        }
+
+        .cta-button:hover {
+            background-color: var(--color-verde-oscuro);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button i {
+            margin-left: 10px;
+            margin-right: 0;
+        }
+        /* Fin del Estilo de Botón CTA */
+
+
+        /*--- Apartados de Imagen con Animación ---*/
+        .proyecto-imagen {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+            background-color: #eee;
+            border-bottom: 3px solid var(--color-naranja-base); /* Color de marca en el borde inferior */
+        }
+
+        .proyecto-imagen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease-in-out, filter 0.6s ease-in-out;
+            filter: brightness(0.95);
+        }
+
+        .proyecto-card:hover .proyecto-imagen img {
+            transform: scale(1.05); /* Menor zoom para evitar distorsión */
+            filter: brightness(1);
+        }
+
+        /* Estilo para la nota de copyright en la imagen */
+        .proyecto-imagen span {
+            position:absolute; bottom:5px; right:10px; background:rgba(0,0,0,0.6); 
+            color:white; font-size:10px; padding:2px 5px; border-radius:3px;
+        }
+
+        /* ===================================== */
+        /* 6. MEDIA QUERIES (MANTENIDAS) */
+        /* ===================================== */
+        @media screen and (max-width: 768px) {
+            .header-container { height: 80px; } 
+            body { padding-top: 80px; } 
+            .navbar-eco { padding: 10px 15px; padding-left: 70px; }
+            .logo-container img { height: 40px; margin-right: 10px; }
+            .brand-name h1 { font-size: 1.8em; }
+            .brand-name p { font-size: 0.7em; margin-top: 2px; }
+            .menu-icon { top: 20px; left: 20px; }
+            .header-gif { height: 80px; transform: scale(0.7); } 
+            .animated-roots-wrapper { transform: scale(0.7); } 
+            .sidebar-menu { width: 100%; height: 100vh; }
+            .sidebar-menu-content { padding-top: 80px; }
+            .dropdown-list li a { font-size: 1em; padding: 12px 20px; }
+            h2 { font-size: 2em; }
+            h3.section-subtitle { font-size: 1.5em; }
+            .container-proyectos { grid-template-columns: 1fr; padding: 0 15px; }
+            .proyecto-imagen { height: 180px; }
+        }
+
+        @media screen and (max-width: 480px) {
+            h2 { font-size: 1.8em; }
+            .header-gif { transform: scale(0.6); } 
+            .animated-roots-wrapper { transform: scale(0.5); }
+            .proyecto-imagen { height: 150px; }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="menu-icon" id="menuIcon">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+    </div>
+
+    <div class="header-container">
+        <nav class="navbar-eco">
+            <div class="logo-container">
+                <img src="logo_pw.png" alt="Logo EcoAcción">
+            </div>
+
+            <div class="brand-name">
+                <h1>Eco<span>Acción</span></h1>
+                <p>¡Tu Impacto Comienza Aquí!</p>
+            </div>
+        </nav>
+        <img src="arbol_enc.gif" alt="Árbol animado" class="header-gif">
+        
+        <div class="animated-roots-wrapper">
+            <div class="root root-1"></div>
+            <div class="root root-2"></div>
+            <div class="root root-3"></div>
+            <div class="root root-4"></div>
+            <div class="root root-5"></div>
+            <div class="root root-6"></div>
+            <div class="root root-7"></div>
+            <div class="root root-8"></div>
+        </div>
+    </div>
+        
+    <div class="sidebar-menu" id="sidebarMenu">
+        <div class="sidebar-menu-content">
+            <ul class="dropdown-list">
+                <li class="animated-item"><a href="../index.html"><i class="fas fa-home"></i> Inicio</a></li>
+                <li class="animated-item"><a href="S_E_C_C.html"><i class="fas fa-globe-americas"></i> Sobre el cambio climático</a></li>
+                <li class="animated-item"><a href="Acciones_por_el_clima.html"><i class="fas fa-leaf"></i> Acciones para el clima</a></li>
+                <li class="animated-item"><a href="proyectos_campañas.html"><i class="fas fa-project-diagram"></i> Proyectos y campañas</a></li>
+                <li class="animated-item"><a href="particioa.html"><i class="fas fa-users"></i> Participa</a></li>
+                <li class="animated-item"><a href="Recursos.html"><i class="fas fa-book-open"></i> Recursos</a></li>
+                <li class="animated-item"><a href="sobre_nosotros.html"><i class="fas fa-handshake"></i> Sobre nosotros</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <h2>Acciones Ambientales y Climáticas en Hidalgo</h2>
+
+        <h3 class="section-subtitle">Proyectos y Campañas Locales Destacadas </h3>
+
+        <div class="container-proyectos">
+
+            <div class="proyecto-card">
+                <div class="proyecto-imagen">
+                    <img src="https://static.misionesonline.news/wp-content/uploads/2024/06/recicla-tu-escuela.jpg" alt="Imagen de Mi Escuela Recicla">
+                </div>
+                <div class="proyecto-info">
+                    <h3><i class="fa-solid fa-tree"></i> Cuidamos la escuela, cuidamos el ambiente</h3>
+                    <p>Este proyecto busca que los alumnos de la Escuela Primaria Miguel Hidalgo apoyen el cuidado del medio ambiente de su escuela a través de la reducción, el reciclaje y la reutilización de basura.</p>
+                    <a href="https://www.studocu.com/es-mx/document/escuela-preparatoria-primero-de-marzo/medio-ambiente/juntos-cuidamos-al-medio-ambienteu-usegundo/112186127" target="_blank" class="cta-button">Conoce la Planeación</a>
+                </div>
+            </div>
+
+            <div class="proyecto-card">
+                <div class="proyecto-imagen">
+                    <img src="CALIDAD DEL AIRE-UAEH.jpg" alt="Imagen de Investigación de la UAEH">
+                    <span>© UAEH</span>
+                </div>
+                <div class="proyecto-info">
+                    <h3><i class="fa-solid fa-cloud"></i> Mejora de la Calidad del Aire – UAEH</h3>
+                    <p>Este proyecto, liderado por el Profesor Sócrates López Pérez (ICSHu, UAEH), busca mejorar la calidad de vida y la salud de la población mediante la reducción de contaminantes en el aire y acciones de mitigación y adaptación al cambio climático.</p>
+                    <a href="https://www.uaeh.edu.mx/noticias/7162/#:~:text=El%20objetivo%20que%20persigue%20el%20proyecto%20denominado%20%E2%80%9CAgenda,contaminantes%20en%20el%20corto%2C%20mediano%20y%20largo%20plazo" target="_blank" class="cta-button">Lee el Boletín</a>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-subtitle">Programas Estatales de Mitigación y Adaptación </h3>
+
+        <div class="container-proyectos">
+
+            <div class="proyecto-card">
+                <div class="proyecto-imagen">
+                    <img src="Parque-Estatal-Bosque-El-Hiloche-2.jpg" alt="Imagen de Bosque en Hidalgo">
+                </div>
+                <div class="proyecto-info">
+                    <h3><i class="fa-solid fa-seedling"></i> Conservación Forestal y Servicios Ambientales</h3>
+                    <p>Acciones Propuestas: Se promueve la conservación de los ecosistemas forestales y el desarrollo de programas de reforestación con especies nativas, esenciales para la captura de carbono y la protección de las cuencas hídricas.</p>
+                    <p>PEACCH Hidalgo: Fortalece la protección de Áreas Naturales Protegidas (ANP) y asegura el inventario forestal y los modelos de captura de carbono.</p>
+                    <a href="https://s-medioambiente.hidalgo.gob.mx/" target="_blank" class="cta-button">Ver Programas de Biodiversidad </a>
+                </div>
+            </div>
+
+            <div class="proyecto-card">
+                <div class="proyecto-imagen">
+                    <img src="acuifero-2.jpeg" alt="Imagen de Captación de Agua de Lluvia">
+                </div>
+                <div class="proyecto-info">
+                    <h3><i class="fa-solid fa-droplet"></i> Manejo Hídrico y Adopción de Ecotecnologías</h3>
+                    <p>Programas PEACCH: Estrategias de adaptación centradas en el manejo sostenible del agua. Se impulsa la instalación de sistemas de captación de agua de lluvia y saneamiento de aguas grises a nivel vivienda.</p>
+                    <p>Mitigación en Viviendas: Promoción de sistemas fotovoltaicos y calentadores solares para reducir el consumo de combustibles fósiles.</p>
+                </div>
+            </div>
+
+            <div class="proyecto-card">
+                <div class="proyecto-imagen">
+                    <img src="RESTARURAR TIERRA.-2.jpeg" alt="Imagen de Contenedores de Reciclaje">
+                </div>
+                <div class="proyecto-info">
+                    <h3><i class="fa-solid fa-recycle"></i> Manejo de Residuos y Economía Circular</h3>
+                    <p>Enfoque Municipal: Acciones cruciales en municipios como Pachuca incluyen la optimización del servicio de recolección, la promoción de la separación de residuos desde la fuente y la lucha contra la contaminación por rellenos sanitarios.</p>
+                    <p>Mitigación de GEI: La gestión adecuada de los residuos sólidos urbanos y el control de las aguas residuales son clave para mitigar las emisiones de Gases de Efecto Invernadero (GEI).</p>
+                </div>
+            </div>
+
+            <div class="proyecto-card">
+                <div class="proyecto-imagen">
+                    <img src="huella.jpg" alt="Imagen de Ciclopista y Transporte Público">
+                </div>
+                <div class="proyecto-info">
+                    <h3><i class="fa-solid fa-person-biking"></i> Movilidad Responsable y Calidad del Aire</h3>
+                    <p>Campaña SEMOT: La Secretaría de Movilidad y Transporte (SEMOT) promueve la "Movilidad Responsable", priorizando al peatón y al ciclista, buscando la ampliación de ciclopistas y la mejora del transporte público.</p>
+                    <p>Mitigación de Emisiones: Fortalecimiento del Programa de Verificación Vehicular y apoyo al sector ladrillero con tecnologías limpias.</p>
+                </div>
+            </div>
+
+            <div class="proyecto-card">
+                <div class="proyecto-imagen">
+                    <img src="prod-agricola-hidalgo.jpg" alt="Imagen de Compra de Productos Locales">
+                </div>
+                <div class="proyecto-info">
+                    <h3><i class="fa-solid fa-house-chimney-crack"></i> Consejos Prácticos: ¡Tu Acción Cuenta!</h3>
+                    <p>En el Hogar: Adopta prácticas de consumo responsable. Ahorra agua y electricidad. Utiliza el Parque Ecológico Cubitos como centro de acopio para materiales reciclables (electrónicos, papel, cartón).</p>
+                    <p>Comunidad: Fomenta la agroecología y la compra de alimentos de temporada para reducir la huella de carbono del transporte.</p>
+                </div>
+            </div>
+
+            <div class="proyecto-card">
+                <div class="proyecto-imagen">
+                    <img src="golpe-de-calor.jpg" alt="Imagen de Personas Aprendiendo">
+                </div>
+                <div class="proyecto-info">
+                    <h3><i class="fa-solid fa-hand-holding-heart"></i> Transversalidad y Conciencia Ciudadana</h3>
+                    <p>Pilar del PEACCH: La educación, capacitación e investigación ambiental son pilares. El objetivo es generar un cambio profundo en la cultura ambiental y fortalecer la capacidad de respuesta ante los riesgos climáticos.</p>
+                    <p>Iniciativas: Difusión de información sobre la calidad del aire y el fomento de la igualdad de género en la acción climática para atender a poblaciones vulnerables.</p>
+                    <a href="https://s-medioambiente.hidalgo.gob.mx/" target="_blank" class="cta-button">Consulta la Agenda Ambiental </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        const menuIcon = document.getElementById('menuIcon');
+        const sidebarMenu = document.getElementById('sidebarMenu'); 
+
+        menuIcon.addEventListener('click', () => {
+            // Alterna la visibilidad del menú
+            sidebarMenu.classList.toggle('visible');
+            // Alterna la animación del icono (hamburguesa <-> X)
+            menuIcon.classList.toggle('active');
+            
+            // Bloquear/desbloquear el scroll del body
+            if (sidebarMenu.classList.contains('visible')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        });
+    </script>
+</body>
+</html>
