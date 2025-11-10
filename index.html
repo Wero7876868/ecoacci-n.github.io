@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>EcoAcción - Glassmorphism con Menú, GIF y Raíces Animadas CSS</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Acme&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <link rel="stylesheet" href="contenido/style_index.css">
+
+</head>
+<body>
+
+<div class="menu-icon" id="menuIcon">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+</div>
+
+<div class="header-container">
+    <nav class="navbar-eco">
+        <div class="logo-container">
+            <img src="contenido/logo_pw.png" alt="Logo EcoAcción">
+        </div>
+
+        <div class="brand-name">
+            <h1>Eco<span>Acción</span></h1>
+            <p>¡Tu Impacto Comienza Aquí!</p>
+        </div>
+    </nav>
+    <img src="contenido/arbol_enc.gif" alt="Árbol animado" class="header-gif">
+    
+    <div class="animated-roots-wrapper">
+        <div class="root root-1"></div>
+        <div class="root root-2"></div>
+        <div class="root root-3"></div>
+        <div class="root root-4"></div>
+        <div class="root root-5"></div>
+        <div class="root root-6"></div>
+        <div class="root root-7"></div>
+        <div class="root root-8"></div>
+    </div>
+</div>
+    
+<div class="sidebar-menu" id="sidebarMenu">
+    <div class="sidebar-menu-content">
+        <ul class="dropdown-list">
+            <li class="animated-item"><a href="index.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li class="animated-item"><a href="contenido/S_E_C_C.html"><i class="fas fa-globe-americas"></i> Sobre el cambio climático</a></li>
+            <li class="animated-item"><a href="contenido/Acciones_por_el_clima.html"><i class="fas fa-leaf"></i> Acciones para el clima</a></li>
+            <li class="animated-item"><a href="contenido/proyectos_campañas.html"><i class="fas fa-project-diagram"></i> Proyectos y campañas</a></li>
+            <li class="animated-item"><a href="contenido/particioa.html"><i class="fas fa-users"></i> Participa</a></li>
+            <li class="animated-item"><a href="contenido/Recursos.html"><i class="fas fa-book-open"></i> Recursos</a></li>
+            <li class="animated-item"><a href="contenido/sobre_nosotros.html"><i class="fas fa-handshake"></i> Sobre nosotros</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="wrapper">
+    <div class="box" data-tilt>
+        <div class="description">
+            <h2>Únete a nuestra causa hoy mismo.</h2>
+            <p>Bienvenido a EcoAcción, un espacio dedicado a informar, inspirar y movilizar a las personas hacia un cambio positivo por el planeta.​ ​</p>
+        </div>
+    </div>
+    <div class="box" data-tilt>
+        <div class="description">
+            <h2>Cuidar el planeta comienza contigo</h2>
+            <p>“Cada acción cuenta, apagar una luz, plantar un árbol, usar menos plástico o compartir información puede marcar la diferencia.” ¡Tu compromiso importa!</p>
+        </div>
+    </div>
+</div>
+
+<script src="https://kit.fontawesome.com/bad7f7f5d4.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+<script src="contenido/script_index.js"></script>
+
+<script>
+    const menuIcon = document.getElementById('menuIcon');
+    const sidebarMenu = document.getElementById('sidebarMenu'); 
+
+    menuIcon.addEventListener('click', () => {
+        sidebarMenu.classList.toggle('visible');
+        menuIcon.classList.toggle('active');
+        
+        // Bloquear/desbloquear el scroll del body
+        if (sidebarMenu.classList.contains('visible')) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+    });
+</script>
+
+</body>
+</html>
